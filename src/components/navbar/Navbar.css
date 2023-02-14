@@ -1,0 +1,122 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 8rem;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo-text {
+  font-size: 4rem;
+  font-weight: 300;
+  color: var(--peach);
+}
+.nav-links {
+  display: flex;
+}
+.nav-links li {
+  margin-left: 1rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--peach);
+  text-decoration: none;
+  margin-right: 1rem;
+}
+.nav-links a:hover {
+  color: var(--sky);
+}
+a.btn {
+  border-radius: 0.5rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+}
+a.btn-orange {
+  border: 2px solid transparent;
+  background: var(--sky);
+  color: var(--peach);
+}
+
+.navbar .menu-icons {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .nav-btn {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    border: 2px solid var(--peach);
+    z-index: 111;
+  }
+
+  .navbar .menu-icons {
+    display: block;
+  }
+
+  .navbar #nav-links-mobile,
+  .navbar #nav-links-mobile-hide {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 8rem;
+    width: 100%;
+    background: var(--blue);
+    border-top: 1px solid var(--peach);
+    padding-bottom: 5px;
+    transition: all 0.3s;
+  }
+
+  .navbar #nav-links-mobile {
+    animation: slide-in 0.5s ease-in-out;
+  }
+
+  @keyframes slide-in {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .navbar #nav-links-mobile-hide {
+    left: -100%;
+    animation: slide-out 0.5s ease-in-out;
+  }
+
+  .navbar #nav-links-mobile li,
+  .navbar #nav-links-mobile-hide li {
+    text-align: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--peach);
+    margin: 0 3rem;
+  }
+
+  .navbar #nav-links-mobile li:last-child,
+  .navbar #nav-links-mobile-hide li:last-child {
+    border-bottom: none;
+  }
+}

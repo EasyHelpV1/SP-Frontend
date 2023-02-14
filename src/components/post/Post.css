@@ -1,0 +1,30 @@
+.post {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding: 5px;
+  border: 1px solid var(--blue);
+  border-radius: 10px;
+}
+
+.post-text h3 {
+  font-size: 2rem;
+  font-weight: 200;
+  line-height: 1.4;
+  text-transform: capitalize;
+  color: var(--light-blue);
+  background: oldlace;
+  border-radius: 5px;
+  padding: 0 5px;
+  width: 20rem;
+}
+
+.post-text p {
+  font-size: 1.5rem;
+  padding: 5px;
+}
+
+.post-text .author {
+  background: oldlace;
+  border-radius: 5px;
+}

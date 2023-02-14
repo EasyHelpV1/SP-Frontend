@@ -1,0 +1,59 @@
+.title {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 3rem;
+  font-weight: 500;
+  margin-bottom: 4rem;
+  padding-top: 4rem;
+  color: var(--peach);
+}
+
+.title h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--sky);
+  margin: 1.5rem 0;
+}
+
+.posts-divs {
+  display: flex;
+  justify-content: center;
+  /* padding: 3rem 0; */
+}
+
+.posts-left,
+.posts-right {
+  flex: 1;
+  background: var(--peach);
+  border: 1px solid var(--color-white);
+  border-radius: 15px;
+  padding: 15px;
+}
+.posts-left {
+  margin-right: 7px;
+}
+.posts-right {
+  margin-left: 7px;
+}
+
+.create {
+  min-height: 30vh;
+  width: 100%;
+  background: oldlace;
+  padding: 10px;
+  border-radius: 15px;
+}
+.messages {
+  margin-top: 15px;
+  min-height: 70vh;
+  width: 100%;
+  background: oldlace;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.posts h2 {
+  color: var(--blue);
+}
