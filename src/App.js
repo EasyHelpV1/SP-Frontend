@@ -57,7 +57,14 @@ function App() {
           {/* <Route path="/allPosts" element={<AllPosts />} />
           <Route path="/createPost" element={<CreatePost />} /> */}
           <Route path="/auth" element={<Auth />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
     </main>

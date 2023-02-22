@@ -1,0 +1,34 @@
+.form-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 1rem; */
+  margin: 0.5rem;
+  /* border: none; */
+  /* border-radius: 5px; */
+  /* background: var(--peach); */
+  color: var(--sky);
+  outline: none;
+  /* width: 80%; */
+  font-size: 1.6rem;
+}
+.register-btn,
+.login-btn {
+  margin: 2rem;
+  font-size: 1.4rem;
+  background: var(--peach);
+  /* border: 1px solid var(--sky); */
+  color: var(--dark-blue);
+  cursor: pointer;
+  min-width: 13vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+input::file-selector-button {
+  background: var(--dark-blue);
+  color: var(--sky);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 4px;
+}

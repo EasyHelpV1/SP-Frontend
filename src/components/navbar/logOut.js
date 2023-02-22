@@ -1,7 +1,7 @@
 const userLoggedOut = (e) => {
   // e.preventDefault();
   //   console.log(data.user.name);
-  localStorage.removeItem("token");
+  localStorage.clear();
   //handle invalid login
 };
 

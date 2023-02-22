@@ -1,9 +1,9 @@
 a {
-  font-size: 1.6rem;
-  font-weight: 300;
+  font-size: 2rem;
+  font-weight: 500;
   color: var(--peach);
   text-decoration: none;
-  margin-right: 1rem;
+  margin-right: 2rem;
 }
 a:hover {
   color: var(--brown);
@@ -14,11 +14,11 @@ a.btn {
   padding: 0.5rem 1rem;
 }
 a.btn-dark {
-  border: 2px solid var(--peach);
+  /* border: 2px solid var(--peach); */
   background: transparent;
 }
 a.btn-orange {
-  border: 2px solid transparent;
+  /* border: 2px solid transparent; */
   background: var(--brown);
   color: var(--peach);
 }

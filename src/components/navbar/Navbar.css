@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   height: 8rem;
+  margin-bottom: 3rem;
 }
 .logo {
   display: flex;
@@ -22,11 +23,11 @@
   list-style: none;
 }
 .nav-links a {
-  font-size: 1.6rem;
-  font-weight: 300;
+  font-size: 2rem;
+  font-weight: 500;
   color: var(--peach);
   text-decoration: none;
-  margin-right: 1rem;
+  margin-right: 2rem;
 }
 .nav-links a:hover {
   color: var(--sky);
@@ -37,7 +38,7 @@ a.btn {
   padding: 0.5rem 1rem;
 }
 a.btn-orange {
-  border: 2px solid transparent;
+  /* border: 2px solid transparent; */
   background: var(--sky);
   color: var(--peach);
 }
@@ -59,7 +60,7 @@ a.btn-orange {
 
   .nav-links {
     display: none;
-    border: 2px solid var(--peach);
+    /* border: 2px solid var(--peach); */
     z-index: 111;
   }
 
@@ -75,7 +76,7 @@ a.btn-orange {
     top: 8rem;
     width: 100%;
     background: var(--blue);
-    border-top: 1px solid var(--peach);
+    /* border-top: 1px solid var(--peach); */
     padding-bottom: 5px;
     transition: all 0.3s;
   }
@@ -111,7 +112,7 @@ a.btn-orange {
   .navbar #nav-links-mobile-hide li {
     text-align: center;
     padding: 1rem 0;
-    border-bottom: 1px solid var(--peach);
+    /* border-bottom: 1px solid var(--peach); */
     margin: 0 3rem;
   }
 

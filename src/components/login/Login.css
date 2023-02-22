@@ -7,15 +7,19 @@ form > * {
   max-width: 50rem;
   margin: 3rem auto;
 }
-
+.login {
+  text-align: center;
+}
 form input {
   padding: 1rem;
-  border: 1px solid #777;
+  margin: 0.5rem;
+  border: none;
   border-radius: 5px;
   background: var(--peach);
   color: var(--sky);
   outline: none;
   width: 80%;
+  min-width: 20vh;
   font-size: 1.6rem;
 }
 
@@ -23,9 +27,10 @@ form button {
   display: flex;
   padding: 1rem;
   background: var(--form-button);
-  border: 1px solid var(--form-button);
+  border: none;
   border-radius: 5px;
   color: var(--sky);
   font-size: 1.6rem;
   font-weight: 500;
+  cursor: pointer;
 }

@@ -1,13 +1,17 @@
 import React from "react";
 import "./Post.css";
 
-const Post = ({ id, title, content, createdBy }) => {
+const Post = ({ id, title, content, createdBy, CreatedAt }) => {
   return (
     <div className="post">
       <div className="post-text" id={id}>
-        <h3>{title}</h3>
+        <div className="post-headings">
+          <h3 className="heading-left">{title}</h3>
+          <h3 className="heading-right">Posted by: {createdBy}</h3>
+        </div>
+
         <p className="u-text-small">{content}</p>
-        <p className="u-text-small author">Author: {createdBy}</p>
+        <p className="timing">Posted at: {CreatedAt}</p>
       </div>
     </div>
   );

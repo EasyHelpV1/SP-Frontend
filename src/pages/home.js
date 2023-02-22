@@ -1,13 +1,12 @@
 import React, { useState } from "react";
+import Img from "../components/images/Img";
 import Navbar from "../components/navbar/Navbar";
 
 const Home = () => {
   return (
-    <main>
-      <header className="bg">
-        <Navbar logIn={true} />
-      </header>
-    </main>
+    <header className="bg">
+      <Navbar logIn={true} />
+    </header>
   );
 };
 

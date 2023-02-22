@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Register from "../components/register/Register";
 import Login from "../components/login/Login";
 import Navbar from "../components/navbar/Navbar";
+import "./auth.css";
 // import Container from "react-bootstrap/Container";
 // import Nav from "react-bootstrap/Nav";
 // import Navbar from "react-bootstrap/Navbar";

@@ -25,11 +25,11 @@ const Login = (props) => {
     })
       .then((response) => response.json())
       .then((json) => userLoggedIn(json))
-      .catch((error) => console.loge(error));
-    setTimeout(() => {
-      navigate("/allPosts");
-    }, 500);
-    // navigate("/allPosts");
+      .catch((error) => console.log(error));
+    // setTimeout(() => {
+    //   navigate("/allPosts");
+    // }, 500);
+    navigate("/allPosts");
   };
 
   //return
@@ -43,17 +43,24 @@ const Login = (props) => {
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="youremail@example.com"
+            required
           />
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="password"
+            required
           />
-          <button onClick={() => props.onFormSwitch("register")}>
-            Register
-          </button>
-          <button>Log in</button>
+          <div className="form-btns">
+            <button className="login-btn">Log in</button>
+            <button
+              className="register-btn"
+              onClick={() => props.onFormSwitch("register")}
+            >
+              Register
+            </button>
+          </div>
         </div>
       </form>
     </div>

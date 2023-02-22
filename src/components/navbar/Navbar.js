@@ -6,10 +6,10 @@ import { FaRegHandshake } from "react-icons/fa";
 import { AiOutlineBars } from "react-icons/ai";
 import { RiCloseLine } from "react-icons/ri";
 import "../UI/button/Button.css";
-import { Nav, NavLink, NavMenu } from "./NovnarElements";
+import { Nav, NavLink, NavMenu } from "./NavbarElements";
 import userLoggedOut from "./logOut";
 
-const Navbar = ({ logIn, logOut }) => {
+const Navbar = ({ logIn, logOut, profile, posts }) => {
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -17,21 +17,27 @@ const Navbar = ({ logIn, logOut }) => {
   };
   return (
     <nav className="container navbar">
-      <div className="logo">
-        <p className="logo-text">EasyHelp</p>
-        <FaRegHandshake color="#ffc47d" size={40} />
-      </div>
+      <NavLink to="/" activeStyle>
+        <div className="logo">
+          <p className="logo-text">EasyHelp</p>
+          <FaRegHandshake color="#BBEDFD" size={40} />
+        </div>
+      </NavLink>
       <Nav>
         <NavMenu>
-          {/* <NavLink to="/allPosts" activeStyle>
-            All Posts
+          <NavLink to="/" activeStyle>
+            Home
           </NavLink>
-          <NavLink to="/createPost" activeStyle>
-            Create Post
-          </NavLink> */}
-          {/* <NavLink to="/auth" activeStyle>
-            Login
-          </NavLink> */}
+          {posts ? (
+            <NavLink to="/allPosts" activeStyle>
+              Posts
+            </NavLink>
+          ) : null}
+          {profile ? (
+            <NavLink to="/profile" activeStyle>
+              Profile
+            </NavLink>
+          ) : null}
           {logIn ? (
             <NavLink to="/auth" activeStyle>
               Login

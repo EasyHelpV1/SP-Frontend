@@ -24,7 +24,8 @@ const CreatePost = () => {
       body: JSON.stringify(post),
     })
       .then((response) => response.json())
-      .then((json) => console.log(json));
+      .then((json) => console.log(json))
+      .then(window.location.reload(false));
     navigate("/allPosts", { replace: true });
   };
   return (
@@ -39,7 +40,14 @@ const CreatePost = () => {
             id="title"
             placeholder="Post Title"
           />
-          <input
+          {/* <input
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            type="text"
+            id="content"
+            placeholder="Post Content"
+          /> */}
+          <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             type="text"
@@ -47,7 +55,7 @@ const CreatePost = () => {
             placeholder="Post Content"
           />
 
-          <button>Create Post</button>
+          <button className="create-btn">Create Post</button>
         </div>
       </form>
     </div>

@@ -3,14 +3,14 @@
 :root {
   --font-family: "Noto Sans", sans-serif;
   /* color palette */
-  --dark-blue: #0a1930;
+  --dark-blue: #101330;
   --color-white: #fff;
   --dark-text: #333;
-  --brown: #ad6d1d;
-  --peach: #ffc47d;
-  --yllow: #fab561;
-  --blue: #107db0;
-  --sky: #66cbfa;
+  --brown: #a8c5e3;
+  --peach: #cfbbfd;
+  --yllow: #c5d1fa;
+  --blue: #aaa8e3;
+  --sky: #bbedfd;
   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -27,7 +27,8 @@ html {
 
 body {
   font-family: var(--font-family);
-  background: oldlace;
+  background: var(--dark-blue);
+  /* background: white; */
 }
 
 section {

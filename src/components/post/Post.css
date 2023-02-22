@@ -3,7 +3,7 @@
   align-items: flex-start;
   margin-bottom: 2rem;
   padding: 5px;
-  border: 1px solid var(--blue);
+  /* border: 1px solid var(--blue); */
   border-radius: 10px;
 }
 
@@ -12,19 +12,59 @@
   font-weight: 200;
   line-height: 1.4;
   text-transform: capitalize;
-  color: var(--light-blue);
-  background: oldlace;
-  border-radius: 5px;
   padding: 0 5px;
-  width: 20rem;
+  background: var(--peach);
+  width: 50%;
 }
 
 .post-text p {
   font-size: 1.5rem;
   padding: 5px;
+  /* background: var(--sky); */
+  background: whitesmoke;
+  width: 100%;
+  min-height: 20vh;
+  min-width: 76vh;
 }
 
-.post-text .author {
-  background: oldlace;
+.post-text {
+  color: var(--dark-blue);
+}
+
+.post-headings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h3.heading-right {
+  text-align: right;
+}
+p.timing {
+  min-height: auto;
+  background: lightblue;
+}
+
+.create-btn {
+  background: var(--peach);
+  border: none;
   border-radius: 5px;
+  color: var(--dark-blue);
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin: 0.5rem;
+}
+textarea#content {
+  min-height: 20vh;
+  min-width: 96%;
+  background: var(--peach);
+  color: var(--sky);
+  border: none;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 5px;
+  resize: none;
+}
+input#title {
+  min-width: 96%;
 }

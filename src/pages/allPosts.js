@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Post from "../components/post/Post";
 import Navbar from "../components/navbar/Navbar";
 import CreatePost from "./createPost";
 import userLoggedOut from "../components/navbar/logOut";
 import "./allPosts.css";
+import moment from "moment";
 
 const AllPosts = () => {
   const [posts, setPosts] = useState([]);
 
-  const token = localStorage.getItem("token");
-
   const getData = async function (url) {
+    const token = localStorage.getItem("token");
     return await fetch(url, {
       method: "GET",
       headers: {
@@ -22,13 +22,14 @@ const AllPosts = () => {
       .then((json) => setPosts(json));
   };
 
-  getData("http://localhost:5000/api/v1/posts/");
+  useEffect(() => {
+    getData("http://localhost:5000/api/v1/posts/");
+  }, []);
 
   return (
     <div className="bg">
-      <Navbar logOut={true} />
+      <Navbar logOut={true} profile={true} posts={true} />
       <div className="container posts">
-        <h1 className="title">all posts page</h1>
         <div className="posts-divs">
           <div className="posts-left">
             <div className="create">
@@ -40,13 +41,13 @@ const AllPosts = () => {
             </div>
           </div>
           <div className="posts-right">
-            <h2>Recent</h2>
             {posts.map((post) => (
               <Post
                 id={post.id}
                 title={post.title}
                 content={post.content}
-                createdBy={post.createdBy}
+                createdBy={post.authorName}
+                CreatedAt={moment(post.createdAt).utc().format("YYYY-MM-DD")}
               />
             ))}
           </div>
