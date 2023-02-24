@@ -27,7 +27,9 @@ const Register = (props) => {
       .then((response) => response.json())
       .then((json) => userRegistered(json))
       .catch((error) => console.log(error));
-    navigate("/allPosts");
+    setTimeout(() => {
+      navigate("/allPosts");
+    }, 500);
   };
 
   return (

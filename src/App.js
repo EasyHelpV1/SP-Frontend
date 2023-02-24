@@ -11,6 +11,7 @@ import Auth from "./pages/auth";
 import Profile from "./pages/profile";
 
 import ProtectedRoute from "./util/ProtectedRoute";
+import Navbar from "./components/navbar/Navbar";
 //import components
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
   // );
   return (
     <main>
+      {/* <Navbar /> */}
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />

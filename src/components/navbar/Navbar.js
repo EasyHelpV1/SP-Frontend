@@ -9,7 +9,8 @@ import "../UI/button/Button.css";
 import { Nav, NavLink, NavMenu } from "./NavbarElements";
 import userLoggedOut from "./logOut";
 
-const Navbar = ({ logIn, logOut, profile, posts }) => {
+const Navbar = () => {
+  const token = localStorage.getItem("token");
   const [showMenu, setShowMenu] = useState(false);
 
   const toggleMenu = () => {
@@ -17,40 +18,29 @@ const Navbar = ({ logIn, logOut, profile, posts }) => {
   };
   return (
     <nav className="container navbar">
-      <NavLink to="/" activeStyle>
+      <NavLink to="/">
         <div className="logo">
           <p className="logo-text">EasyHelp</p>
           <FaRegHandshake color="#BBEDFD" size={40} />
         </div>
       </NavLink>
       <Nav>
-        <NavMenu>
-          <NavLink to="/" activeStyle>
-            Home
-          </NavLink>
-          {posts ? (
-            <NavLink to="/allPosts" activeStyle>
-              Posts
-            </NavLink>
-          ) : null}
-          {profile ? (
-            <NavLink to="/profile" activeStyle>
-              Profile
-            </NavLink>
-          ) : null}
-          {logIn ? (
-            <NavLink to="/auth" activeStyle>
-              Login
-            </NavLink>
-          ) : null}
-          {logOut ? (
-            <NavLink onClick={(e) => userLoggedOut()} to="/" activeStyle>
+        {token ? (
+          <NavMenu>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/allPosts">Posts</NavLink>
+            <NavLink to="/profile">Profile</NavLink>
+            <NavLink onClick={(e) => userLoggedOut()} to="/">
               Logout
             </NavLink>
-          ) : null}
-        </NavMenu>
+          </NavMenu>
+        ) : (
+          <NavMenu>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/auth">Login/Register</NavLink>
+          </NavMenu>
+        )}
       </Nav>
-
       {/* <div className="menu-icons" onClick={toggleMenu}>
         {showMenu ? (
           <RiCloseLine color="#ffc47d" size={30} />

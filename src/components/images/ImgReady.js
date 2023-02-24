@@ -1,10 +1,11 @@
 import { React, useEffect, useState } from "react";
 import { imagefrombuffer } from "imagefrombuffer";
+import { useNavigate } from "react-router-dom";
 
 const ImgReady = (userImg) => {
-  // console.log(userImg);
-
+  const navigate = useNavigate();
   const [userImage, setUserImage] = useState([]);
+  const [loading, setLoading] = useState(true);
   const getData = async (imgId) => {
     const token = localStorage.getItem("token");
 
@@ -16,18 +17,16 @@ const ImgReady = (userImg) => {
       },
     })
       .then((response) => response.json())
-      .then((json) => setUserImage(json));
+      .then((json) => setUserImage(json))
+      .then(setLoading(false));
   };
 
   useEffect(() => {
-    console.log(userImg.userImg);
     getData(userImg.userImg);
-    // console.log(userImage);
   }, []);
 
   return (
     <div className="image">
-      {/* {console.log(userImage.img.data)} */}
       {userImage.img ? (
         <img
           src={imagefrombuffer({
@@ -35,13 +34,9 @@ const ImgReady = (userImg) => {
             data: userImage.img.data,
           })}
         ></img>
-      ) : null}
-      {/* <img
-        src={imagefrombuffer({
-          type: userImage.img.type,
-          data: userImage.img.data,
-        })}
-      ></img> */}
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };

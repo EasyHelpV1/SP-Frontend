@@ -26,8 +26,6 @@ const Img = () => {
 
     const data = await response.json();
     console.log(data);
-    // navigate("/profile", { replace: true });
-    window.location.reload(false);
   }
 
   function handleFileChange(event) {

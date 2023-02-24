@@ -61,7 +61,7 @@ const Profile = () => {
 
   return (
     <div className="bg">
-      <Navbar logOut={true} profile={true} posts={true} />
+      <Navbar />
       <div className="container profile">
         <div className="profile-divs">
           <div className="profile-left">

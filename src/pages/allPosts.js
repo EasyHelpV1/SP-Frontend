@@ -28,7 +28,7 @@ const AllPosts = () => {
 
   return (
     <div className="bg">
-      <Navbar logOut={true} profile={true} posts={true} />
+      <Navbar />
       <div className="container posts">
         <div className="posts-divs">
           <div className="posts-left">

@@ -5,7 +5,7 @@ import Navbar from "../components/navbar/Navbar";
 const Home = () => {
   return (
     <header className="bg">
-      <Navbar logIn={true} />
+      <Navbar />
     </header>
   );
 };
