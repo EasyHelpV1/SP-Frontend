@@ -1,3 +1,4 @@
+/* jshint esversion: 8 */
 const userRegistered = (data) => {
   console.log(data.user);
   localStorage.setItem("user", JSON.stringify(data.user));

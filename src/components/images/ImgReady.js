@@ -1,3 +1,4 @@
+/* jshint esversion: 8 */
 import { React, useEffect, useState } from "react";
 import { imagefrombuffer } from "imagefrombuffer";
 import { useNavigate } from "react-router-dom";

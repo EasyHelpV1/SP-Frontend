@@ -12,6 +12,12 @@
   --blue: #aaa8e3;
   --sky: #bbedfd;
   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --bright-blue: #42a4fd;
+  --bg-grad: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(70, 191, 252, 1) 100%
+  );
 }
 
 * {
@@ -42,8 +48,7 @@ section {
 }
 
 .posts,
-.profile,
-.home {
+.profile {
   max-height: 75vh;
   overflow: scroll;
 }

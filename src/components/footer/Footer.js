@@ -1,3 +1,4 @@
+/*jshint esversion: 8*/
 import React from "react";
 import "./Footer.css";
 import { FaRegHandshake } from "react-icons/fa";
@@ -18,7 +19,7 @@ const Footer = () => {
       <div className="footer-third">
         <div className="logo">
           <p className="logo-text">EasyHelp</p>
-          <FaRegHandshake color="#cfbbfd" size={40} />
+          <FaRegHandshake color="#BBEDFD" size={40} />
         </div>
         <p>&copy; Copyright 2021 EasyHelp.com</p>
       </div>

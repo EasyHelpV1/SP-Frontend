@@ -1,7 +1,8 @@
+/* jshint esversion: 8 */
 import React, { useState, useEffect } from "react";
 import Post from "../components/post/Post";
 import Navbar from "../components/navbar/Navbar";
-import CreatePost from "./createPost";
+import CreatePost from "../components/post/createPost";
 import userLoggedOut from "../components/navbar/logOut";
 import "./allPosts.css";
 import moment from "moment";
@@ -28,7 +29,7 @@ const AllPosts = () => {
 
   return (
     <div className="bg">
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="container posts">
         <div className="posts-divs">
           <div className="posts-left">

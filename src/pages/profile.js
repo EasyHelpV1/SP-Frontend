@@ -1,10 +1,8 @@
+/* jshint esversion: 8 */
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/navbar/Navbar";
-import Post from "../components/post/Post";
 import "./profile.css";
 import { MdEdit } from "react-icons/md";
 import moment from "moment";
-import { imagefrombuffer } from "imagefrombuffer";
 import Img from "../components/images/Img";
 import ImgReady from "../components/images/ImgReady";
 
@@ -61,7 +59,7 @@ const Profile = () => {
 
   return (
     <div className="bg">
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="container profile">
         <div className="profile-divs">
           <div className="profile-left">

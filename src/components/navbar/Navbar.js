@@ -1,6 +1,5 @@
 /* jshint esversion: 8 */
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import { FaRegHandshake } from "react-icons/fa";
 import { AiOutlineBars } from "react-icons/ai";
@@ -13,9 +12,10 @@ const Navbar = () => {
   const token = localStorage.getItem("token");
   const [showMenu, setShowMenu] = useState(false);
 
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-  };
+  // const toggleMenu = () => {
+  //   setShowMenu(!showMenu);
+  // };
+
   return (
     <nav className="container navbar">
       <NavLink to="/">
@@ -37,6 +37,8 @@ const Navbar = () => {
         ) : (
           <NavMenu>
             <NavLink to="/">Home</NavLink>
+            <NavLink to="#about">About</NavLink>
+            <NavLink to="#how-to">How To</NavLink>
             <NavLink to="/auth">Login/Register</NavLink>
           </NavMenu>
         )}

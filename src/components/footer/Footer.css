@@ -1,5 +1,5 @@
 .footer {
-  background: var(--sky);
+  background: var(--bright-blue);
   color: var(--dark-blue);
   min-width: 100%;
   min-height: 13vh;
@@ -17,7 +17,7 @@
 .footer-third {
   padding: 1rem;
   margin: 1rem;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 2rem;
 }
