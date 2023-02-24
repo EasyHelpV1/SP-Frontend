@@ -121,7 +121,7 @@ const Profile = () => {
 
                 {user.phone ? (
                   <div className="info-field">
-                    <p className="a-field">Phone Number{user.phone}</p>
+                    <p className="a-field">Phone Number: {user.phone}</p>
                     {toggle ? (
                       <input
                         id="phone"

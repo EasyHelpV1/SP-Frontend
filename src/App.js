@@ -12,6 +12,7 @@ import Profile from "./pages/profile";
 
 import ProtectedRoute from "./util/ProtectedRoute";
 import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
 //import components
 
 function App() {
@@ -35,41 +36,44 @@ function App() {
   //   </React.Fragment>
   // );
   return (
-    <main>
-      {/* <Navbar /> */}
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="/allPosts"
-            element={
-              <ProtectedRoute>
-                <AllPosts />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/createPost"
-            element={
-              <ProtectedRoute>
-                <CreatePost />
-              </ProtectedRoute>
-            }
-          />
-          {/* <Route path="/allPosts" element={<AllPosts />} />
+    <div>
+      <main>
+        {/* <Navbar /> */}
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/allPosts"
+              element={
+                <ProtectedRoute>
+                  <AllPosts />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/createPost"
+              element={
+                <ProtectedRoute>
+                  <CreatePost />
+                </ProtectedRoute>
+              }
+            />
+            {/* <Route path="/allPosts" element={<AllPosts />} />
           <Route path="/createPost" element={<CreatePost />} /> */}
-          <Route path="/auth" element={<Auth />} />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </Router>
-    </main>
+            <Route path="/auth" element={<Auth />} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </Router>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
