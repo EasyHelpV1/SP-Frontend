@@ -66,14 +66,20 @@ const Profile = () => {
         <div className="profile-divs">
           <div className="profile-left">
             <div className="photo">
-              {user.userImg ? <ImgReady userImg={user.userImg} /> : <Img />}
+              {user.userImg ? (
+                <ImgReady userImg={user.userImg} />
+              ) : (
+                <div>
+                  <h2>Upload a Profile Picture</h2>
+                  <Img />
+                </div>
+              )}
             </div>
-            {/* <div className="options">options div</div> */}
           </div>
           <div className="profile-right">
             <div className="user-fields" id={user.id}>
               <div className="info-field-header">
-                <h2>{user.firstN}'s Info</h2>
+                <h2>Account Information</h2>
                 <p className="edit-icon" onClick={handleEditClick}>
                   <MdEdit color="#BBEDFD" size={20} />
                 </p>
@@ -85,14 +91,10 @@ const Profile = () => {
                     <input
                       id="firstN"
                       type="text"
-                      value={firstN}
                       onChange={(e) => setFirstN(e.target.value)}
-                      placeholder="Enter a name"
+                      defaultValue={user.firstN || firstN}
                     />
                   ) : null}
-                  {/* <p className="edit-icon" onClick={handleEditClick}>
-                    <MdEdit color="#BBEDFD" size={20} />
-                  </p> */}
                 </div>
                 <div className="info-field">
                   <p className="a-field">Last Name: {user.lastN} </p>
@@ -100,14 +102,10 @@ const Profile = () => {
                     <input
                       id="lastN"
                       type="text"
-                      value={lastN}
                       onChange={(e) => setLastN(e.target.value)}
-                      placeholder="Enter a name"
+                      defaultValue={user.lastN || lastN}
                     />
                   ) : null}
-                  {/* <p className="edit-icon" onClick={handleEditClick}>
-                    <MdEdit color="#BBEDFD" size={20} />
-                  </p> */}
                 </div>
                 <div className="info-field">
                   <p className="a-field">Email Address: {user.email} </p>
@@ -115,30 +113,12 @@ const Profile = () => {
                     <input
                       id="email"
                       type="email"
-                      value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter an email address"
+                      defaultValue={user.email || email}
                     />
                   ) : null}
-                  {/* <p className="edit-icon" onClick={handleEditClick}>
-                    <MdEdit color="#BBEDFD" size={20} />
-                  </p> */}
                 </div>
-                <div className="info-field">
-                  <p className="a-field">Password: *********** </p>
-                  {toggle ? (
-                    <input
-                      id="password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Enter a password"
-                    />
-                  ) : null}
-                  {/* <p className="edit-icon" onClick={handleEditClick}>
-                    <MdEdit color="#BBEDFD" size={20} />
-                  </p> */}
-                </div>
+
                 {user.phone ? (
                   <div className="info-field">
                     <p className="a-field">Phone Number{user.phone}</p>
@@ -146,14 +126,10 @@ const Profile = () => {
                       <input
                         id="phone"
                         type="phone"
-                        value={phone}
                         onChange={(e) => setPhone(e.target.value)}
-                        placeholder="Enter a phone number"
+                        defaultValue={user.phone || phone}
                       />
                     ) : null}
-                    {/* <p className="edit-icon" onClick={handleEditClick}>
-                      <MdEdit color="#BBEDFD" size={20} />
-                    </p> */}
                   </div>
                 ) : null}
                 <div className="info-field">
@@ -163,6 +139,39 @@ const Profile = () => {
                   </p>
                 </div>
                 {toggle ? <button>Save Changes</button> : null}
+              </form>
+            </div>
+            <div className="options">
+              <form>
+                <h2>Change Password</h2>
+                <div className="info-field">
+                  <p className="a-field">Old Password</p>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter a password"
+                  />
+                </div>
+                <div className="info-field">
+                  <p className="a-field">New Password</p>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter a password"
+                  />
+                </div>
+                <div className="info-field">
+                  <p className="a-field">Re-enter New Password</p>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter a password"
+                  />
+                </div>
+                <button>Save Password</button>
               </form>
             </div>
           </div>
