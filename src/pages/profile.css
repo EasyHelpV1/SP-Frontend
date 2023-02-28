@@ -68,3 +68,27 @@
   height: 100%;
   border-radius: 5px;
 }
+.info-field input {
+  padding: 1px;
+  margin: 0px;
+  border: none;
+  /* border-radius: 5px; */
+  background: var(--dark-blue);
+  border: 1px solid var(--sky);
+  color: var(--sky);
+  outline: none;
+  width: 35%;
+  min-width: 14vh;
+}
+.profile-left button {
+  margin: 1rem;
+  margin-left: 3%;
+  min-width: 10rem;
+  padding: 0.5rem;
+  background: var(--sky);
+  border: none;
+  border-radius: 5px;
+  color: var(--dark-blue);
+  font-weight: 600;
+  cursor: pointer;
+}

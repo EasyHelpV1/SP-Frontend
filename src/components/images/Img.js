@@ -1,15 +1,14 @@
 /* jshint esversion: 8 */
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const Img = () => {
-  const navigate = useNavigate();
-
   const [file, setFile] = useState(null);
 
-  async function handleImg(event) {
-    event.preventDefault();
-    const userId = JSON.parse(localStorage.getItem("user"))._id;
+  const userId = JSON.parse(localStorage.getItem("user"))._id;
+  const token = localStorage.getItem("token");
+
+  const handleImg = async (e) => {
+    e.preventDefault();
 
     if (!file) {
       console.log("No file selected");
@@ -22,12 +21,16 @@ const Img = () => {
 
     const response = await fetch("http://localhost:5000/api/v1/imgs/", {
       method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
       body: formData,
     });
 
     const data = await response.json();
     console.log(data);
-  }
+    window.location.reload(false);
+  };
 
   function handleFileChange(event) {
     setFile(event.target.files[0]);
@@ -35,7 +38,6 @@ const Img = () => {
 
   return (
     <div>
-      {/* <h2>Add Profile Picture</h2> */}
       <form onSubmit={handleImg}>
         <input type="file" onChange={handleFileChange} />
         <button type="submit">Upload</button>

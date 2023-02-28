@@ -3,41 +3,55 @@ import { React, useEffect, useState } from "react";
 import { imagefrombuffer } from "imagefrombuffer";
 import { useNavigate } from "react-router-dom";
 
-const ImgReady = (userImg) => {
-  const navigate = useNavigate();
-  const [userImage, setUserImage] = useState([]);
+const ImgReady = ({ userImg }) => {
+  const [userImage, setUserImage] = useState();
   const [loading, setLoading] = useState(true);
-  const getData = async (imgId) => {
-    const token = localStorage.getItem("token");
-
-    return await fetch(`http://localhost:5000/api/v1/imgs/${imgId}`, {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => setUserImage(json))
-      .then(setLoading(false));
-  };
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getData(userImg.userImg);
+    const token = localStorage.getItem("token");
+
+    const getData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/v1/imgs/${userImg}`,
+          {
+            method: "GET",
+            headers: {
+              "Authorization": `Bearer ${token}`,
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error(
+            `This is an HTTP error: The status is ${response.status}`
+          );
+        }
+        let imgData = await response.json();
+        setUserImage(imgData);
+        console.log(imgData);
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getData();
   }, []);
 
   return (
     <div className="image">
-      {userImage.img ? (
-        <img
-          src={imagefrombuffer({
-            type: userImage.img.type,
-            data: userImage.img.data,
-          })}
-        ></img>
-      ) : (
-        <p>Loading...</p>
-      )}
+      {userImage &&
+        (console.log(userImage),
+        (
+          <img
+            src={imagefrombuffer({
+              type: userImage.img.type,
+              data: userImage.img.data,
+            })}
+          ></img>
+        ))}
     </div>
   );
 };
