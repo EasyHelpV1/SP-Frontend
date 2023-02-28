@@ -68,3 +68,54 @@ textarea#content {
 input#title {
   min-width: 96%;
 }
+p.commentP {
+  min-block-size: auto;
+  background: lavender;
+}
+p.commentPShow {
+  min-block-size: fit-content;
+  color: var(--blue);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 1rem;
+}
+.comment-options {
+  display: flex;
+}
+.comment-options p {
+  min-width: 50%;
+  cursor: pointer;
+}
+p#add-comment {
+  text-align: right;
+}
+.comments-section {
+  min-width: 90%;
+  width: 98%;
+  background: white;
+  margin: 0px 1%;
+}
+p.commentP {
+  min-block-size: auto;
+  background: lavender;
+  min-width: 100%;
+  margin: 0.5rem 0;
+  margin-top: 0;
+}
+input#addComment {
+  min-width: 50%;
+  width: 50%;
+}
+.post-text form {
+  display: flex;
+}
+input#addComment {
+  min-width: 50%;
+  width: 50%;
+  height: 5rem;
+}
+.post-text button {
+  width: 40%;
+  margin: 1rem;
+  text-align: right;
+}
