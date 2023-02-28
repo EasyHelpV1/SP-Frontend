@@ -12,26 +12,31 @@
 }
 .photo {
   background: var(--peach);
-  margin: 1rem;
+  /* margin: 1rem; */
+  margin-top: 4rem;
+  /* margin-left: 1rem; */
   padding: 1rem;
-  min-height: 40vh;
-  min-width: 40vh;
+  min-height: 33vh;
+  min-width: 33vh;
   width: 50%;
-  border-radius: 50%;
+  border-radius: 5px;
   align-items: center;
   display: flex;
   justify-content: center;
 }
-/* .options {
-  margin: 1rem;
-  margin-top: 3rem;
-  padding: 1rem;
+.options h2 {
+  margin-top: 1rem;
+}
+.options {
+  border: 1px solid var(--sky);
   border-radius: 1rem;
-  min-height: 45vh;
-  width: 35vh;
-  min-width: 35vh;
-  background: var(--peach);
-} */
+  padding: 1rem;
+  margin-top: 2rem;
+}
+.options .info-field {
+  border: none;
+  margin: 0;
+}
 .info-field {
   /* background: var(--peach); */
   display: flex;
@@ -61,5 +66,29 @@
 .photo img {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: 5px;
+}
+.info-field input {
+  padding: 1px;
+  margin: 0px;
+  border: none;
+  /* border-radius: 5px; */
+  background: var(--dark-blue);
+  border: 1px solid var(--sky);
+  color: var(--sky);
+  outline: none;
+  width: 35%;
+  min-width: 14vh;
+}
+.profile-left button {
+  margin: 1rem;
+  margin-left: 3%;
+  min-width: 10rem;
+  padding: 0.5rem;
+  background: var(--sky);
+  border: none;
+  border-radius: 5px;
+  color: var(--dark-blue);
+  font-weight: 600;
+  cursor: pointer;
 }

@@ -5,37 +5,20 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 // import pages
 import AllPosts from "./pages/allPosts";
-import CreatePost from "./pages/createPost";
 import Home from "./pages/home";
 import Auth from "./pages/auth";
 import Profile from "./pages/profile";
 
 import ProtectedRoute from "./util/ProtectedRoute";
+import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
 //import components
 
 function App() {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const checkUserToken = () => {
-  //   const userToken = localStorage.getItem("token");
-  //   if (!userToken || userToken === "undefined") {
-  //     setIsLoggedIn(false);
-  //   }
-  //   setIsLoggedIn(true);
-  // };
-  // useEffect(() => {
-  //   checkUserToken();
-  // }, [isLoggedIn]);
-
-  // return (
-  //   <React.Fragment>
-  //     {isLoggedIn && <PortalNavbar />}
-  //     <Outlet />
-  //     {isLoggedIn && <PortalFooter />}
-  //   </React.Fragment>
-  // );
   return (
     <main>
       <Router>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
@@ -46,16 +29,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/createPost"
-            element={
-              <ProtectedRoute>
-                <CreatePost />
-              </ProtectedRoute>
-            }
-          />
-          {/* <Route path="/allPosts" element={<AllPosts />} />
-          <Route path="/createPost" element={<CreatePost />} /> */}
           <Route path="/auth" element={<Auth />} />
           <Route
             path="/profile"
@@ -67,6 +40,7 @@ function App() {
           />
         </Routes>
       </Router>
+      <Footer />
     </main>
   );
 }

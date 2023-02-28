@@ -1,12 +1,37 @@
+/* jshint esversion: 8 */
 import React, { useState } from "react";
-import Img from "../components/images/Img";
-import Navbar from "../components/navbar/Navbar";
+import { useNavigate } from "react-router-dom";
+import "./home.css";
+import ppl from "../assets/ppl.png";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate("/auth");
+  };
   return (
-    <header className="bg">
-      <Navbar logIn={true} />
-    </header>
+    <div className="container home">
+      <div className="info-register">
+        <div className="text">
+          <h1>Communicate and Help</h1>
+          <h2>A space for cooperation</h2>
+          <p>
+            Easy Help is a platform that allows you to communicate with others
+            and get assistance in achieving small easy tasks that require an
+            extra hand.
+          </p>
+          <form>
+            <button onClick={handleClick}>Register Now!</button>
+          </form>
+        </div>
+        <img src={ppl} alt="ppl" />
+      </div>
+      <div className="info-use"></div>
+      <div className="info-social"></div>
+    </div>
+    // <header className="bg">
+    //   <Navbar />
+    // </header>
   );
 };
 

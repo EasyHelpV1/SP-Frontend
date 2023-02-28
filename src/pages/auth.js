@@ -1,3 +1,4 @@
+/* jshint esversion: 8 */
 import React, { useState } from "react";
 import Register from "../components/register/Register";
 import Login from "../components/login/Login";
@@ -14,9 +15,7 @@ const Auth = () => {
   };
   return (
     <section id="auth">
-      <header className="">
-        <Navbar />
-      </header>
+      {/* <Navbar /> */}
       <div className="container auth">
         {currentForm === "login" ? (
           <Login onFormSwitch={toggleForm} />

@@ -12,6 +12,12 @@
   --blue: #aaa8e3;
   --sky: #bbedfd;
   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --bright-blue: #42a4fd;
+  --bg-grad: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(70, 191, 252, 1) 100%
+  );
 }
 
 * {
@@ -39,4 +45,30 @@ section {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+.posts,
+.profile {
+  max-height: 75vh;
+  overflow: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--color-white);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--brown);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blue);
 }

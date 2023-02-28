@@ -1,0 +1,36 @@
+.footer {
+  background: var(--bright-blue);
+  color: var(--dark-blue);
+  min-width: 100%;
+  min-height: 13vh;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  row-gap: 2rem;
+  column-gap: 2rem;
+}
+.footer-first,
+.footer-second,
+.footer-third {
+  padding: 1rem;
+  margin: 1rem;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 2rem;
+}
+.footer a {
+  text-decoration: none;
+  display: block;
+  color: var(--dark-blue);
+  font-size: 15px;
+  font-weight: 600;
+}
+.footer-third .logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  justify-content: normal;
+}

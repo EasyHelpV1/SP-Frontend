@@ -1,3 +1,4 @@
+/* jshint esversion: 8 */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import userLoggedIn from "./loggedIn";
@@ -26,10 +27,9 @@ const Login = (props) => {
       .then((response) => response.json())
       .then((json) => userLoggedIn(json))
       .catch((error) => console.log(error));
-    // setTimeout(() => {
-    //   navigate("/allPosts");
-    // }, 500);
-    navigate("/allPosts");
+    setTimeout(() => {
+      navigate("/allPosts");
+    }, 500);
   };
 
   //return
