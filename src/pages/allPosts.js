@@ -1,9 +1,7 @@
 /* jshint esversion: 8 */
 import React, { useState, useEffect } from "react";
 import Post from "../components/post/Post";
-import Navbar from "../components/navbar/Navbar";
 import CreatePost from "../components/post/createPost";
-import userLoggedOut from "../components/navbar/logOut";
 import "./allPosts.css";
 import moment from "moment";
 
@@ -44,9 +42,10 @@ const AllPosts = () => {
           <div className="posts-right">
             {posts.map((post) => (
               <Post
-                id={post.id}
+                postId={post._id}
                 title={post.title}
                 content={post.content}
+                comments={post.replies}
                 createdBy={post.authorName}
                 CreatedAt={moment(post.createdAt).utc().format("YYYY-MM-DD")}
               />
