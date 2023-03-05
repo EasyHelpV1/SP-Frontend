@@ -44,7 +44,8 @@
 .create {
   min-height: 30vh;
   width: 100%;
-  background: #c5d1fa;
+  /* background: #c5d1fa; */
+  background: #42a4fd73;
   padding: 10px;
   border-radius: 15px;
 }
@@ -52,7 +53,8 @@
   margin-top: 15px;
   min-height: 70vh;
   width: 100%;
-  background: #c5d1fa;
+  /* background: #c5d1fa; */
+  background: #42a4fd73;
   padding: 10px;
   border-radius: 15px;
 }

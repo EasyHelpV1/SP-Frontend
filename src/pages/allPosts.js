@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import Post from "../components/post/Post";
 import CreatePost from "../components/post/createPost";
+import Navbar from "../components/navbar/Navbar";
+import Footer from "../components/footer/Footer";
 import "./allPosts.css";
 import moment from "moment";
 
@@ -27,7 +29,7 @@ const AllPosts = () => {
 
   return (
     <div className="bg">
-      {/* <Navbar /> */}
+      <Navbar />
       <div className="container posts">
         <div className="posts-divs">
           <div className="posts-left">
@@ -42,21 +44,22 @@ const AllPosts = () => {
           <div className="posts-right">
             {posts.map((post) => (
               <Post
+                key={post._id}
                 postId={post._id}
                 title={post.title}
                 content={post.content}
-                comments={post.replies}
-                createdBy={post.authorName}
+                comments={post.comments}
+                // createdBy={post.authorName}
+                createdBy={`${post.userData[0].firstN} ${post.userData[0].lastN}`}
                 CreatedAt={moment(post.createdAt).utc().format("YYYY-MM-DD")}
               />
             ))}
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
 
 export default AllPosts;
-
-//show all posts

@@ -3,7 +3,7 @@ a {
   font-weight: 500;
   color: var(--peach);
   text-decoration: none;
-  margin-right: 2rem;
+  margin-right: 4rem;
 }
 a:hover {
   color: var(--brown);

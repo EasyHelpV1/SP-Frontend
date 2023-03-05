@@ -4,17 +4,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--bg-grad);
-  border-radius: 1rem;
+  /* background: var(--bg-grad); */
+  /* border-radius: 1rem; */
 }
 .text {
   width: 35%;
   margin-left: 8rem;
   margin-top: 2rem;
   font-size: 12px;
+  max-width: 75vh;
 }
 .info-register img {
   width: 60%;
   margin-right: 3rem;
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
+  max-width: 95vh;
 }

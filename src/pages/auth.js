@@ -15,7 +15,7 @@ const Auth = () => {
   };
   return (
     <section id="auth">
-      {/* <Navbar /> */}
+      <Navbar />
       <div className="container auth">
         {currentForm === "login" ? (
           <Login onFormSwitch={toggleForm} />
