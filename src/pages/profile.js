@@ -25,7 +25,7 @@ const Profile = () => {
     const getData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/v1/users/${userId}`,
+          `https://sp-backend-b70z.onrender.com/api/v1/users/${userId}`,
           {
             method: "GET",
             headers: {
@@ -58,16 +58,19 @@ const Profile = () => {
   const handleDeletePhoto = async (e) => {
     e.preventDefault();
     // first delete image from db
-    const deleteReq = await fetch(`http://localhost:5000/api/v1/imgs/${uImg}`, {
-      method: "DELETE",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-      },
-    });
+    const deleteReq = await fetch(
+      `https://sp-backend-b70z.onrender.com/api/v1/imgs/${uImg}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      }
+    );
     //edit user image field
     user.userImg = null;
     const updateUser = await fetch(
-      `http://localhost:5000/api/v1/users/${userId}`,
+      `https://sp-backend-b70z.onrender.com/api/v1/users/${userId}`,
       {
         method: "PATCH",
         headers: {

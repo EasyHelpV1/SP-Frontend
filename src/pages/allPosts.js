@@ -24,7 +24,7 @@ const AllPosts = () => {
   };
 
   useEffect(() => {
-    getData("http://localhost:5000/api/v1/posts/");
+    getData("https://sp-backend-b70z.onrender.com/api/v1/posts/");
   }, []);
 
   return (

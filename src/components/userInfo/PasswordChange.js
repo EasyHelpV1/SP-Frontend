@@ -16,7 +16,7 @@ const PasswordChange = ({ user }) => {
     const userPasses = { oldPassword, newPassword };
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v1/users/changePassword/${userId}`,
+        `https://sp-backend-b70z.onrender.com/api/v1/users/changePassword/${userId}`,
         {
           method: "PATCH",
           headers: {

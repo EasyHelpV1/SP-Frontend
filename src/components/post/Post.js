@@ -30,7 +30,7 @@ const Post = ({ postId, title, content, comments, createdBy, CreatedAt }) => {
     console.log(postId);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v1/comment/${postId}`,
+        `https://sp-backend-b70z.onrender.com/api/v1/comment/${postId}`,
         {
           method: "PATCH",
           headers: {

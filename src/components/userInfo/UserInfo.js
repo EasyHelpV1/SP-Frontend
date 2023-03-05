@@ -32,7 +32,7 @@ const UserInfo = ({ user }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v1/users/${userId}`,
+        `https://sp-backend-b70z.onrender.com/api/v1/users/${userId}`,
         {
           method: "PATCH",
           headers: {

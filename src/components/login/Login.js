@@ -17,7 +17,7 @@ const Login = (props) => {
 
     const user = { email, password };
 
-    fetch("http://localhost:5000/api/v1/auth/login", {
+    fetch("https://sp-backend-b70z.onrender.com/api/v1/auth/login", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

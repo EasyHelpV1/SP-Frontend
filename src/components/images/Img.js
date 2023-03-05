@@ -19,13 +19,16 @@ const Img = () => {
     formData.append("image", file);
     formData.append("userId", userId);
 
-    const response = await fetch("http://localhost:5000/api/v1/imgs/", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-      },
-      body: formData,
-    });
+    const response = await fetch(
+      "https://sp-backend-b70z.onrender.com/api/v1/imgs/",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+        body: formData,
+      }
+    );
 
     const data = await response.json();
     console.log(data);
