@@ -16,7 +16,7 @@ const CreatePost = () => {
 
     console.log(`got token ${token}`);
 
-    fetch("http://localhost:5000/api/v1/posts/", {
+    fetch("https://sp-backend-b70z.onrender.com/api/v1/posts/", {
       method: "POST",
       headers: {
         "Content-type": "application/json",

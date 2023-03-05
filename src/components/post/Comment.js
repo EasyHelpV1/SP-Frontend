@@ -12,7 +12,7 @@ const Comment = ({ comment }) => {
     const getCommentData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/v1/comment/${comment}`,
+          `https://sp-backend-b70z.onrender.com/api/v1/comment/${comment}`,
           {
             method: "GET",
             headers: {

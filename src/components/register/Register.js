@@ -18,7 +18,7 @@ const Register = (props) => {
   const handleRegister = (e) => {
     e.preventDefault();
     const user = { firstN, lastN, birthDate, email, phone, password };
-    fetch("http://localhost:5000/api/v1/auth/register", {
+    fetch("https://sp-backend-b70z.onrender.com/api/v1/auth/register", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
