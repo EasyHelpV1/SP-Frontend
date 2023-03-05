@@ -9,11 +9,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 3rem;
 }
 .logo-text {
   font-size: 4rem;
   font-weight: 300;
   color: var(--peach);
+  margin: 0.5rem;
 }
 .nav-links {
   display: flex;

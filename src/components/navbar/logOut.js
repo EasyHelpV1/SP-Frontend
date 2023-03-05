@@ -4,7 +4,6 @@ const userLoggedOut = (e) => {
   //   console.log(data.user.name);
   localStorage.clear();
   //handle invalid login
-  window.location.reload();
 };
 
 export default userLoggedOut;

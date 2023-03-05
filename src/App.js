@@ -18,7 +18,6 @@ function App() {
   return (
     <main>
       <Router>
-        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
@@ -40,7 +39,7 @@ function App() {
           />
         </Routes>
       </Router>
-      <Footer />
+      {/* <Footer /> */}
     </main>
   );
 }

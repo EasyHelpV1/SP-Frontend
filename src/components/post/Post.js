@@ -6,9 +6,12 @@ import { MdAddComment } from "react-icons/md";
 import "./Post.css";
 
 const Post = ({ postId, title, content, comments, createdBy, CreatedAt }) => {
+  // states
   const [showComments, setShowComments] = useState(false);
-  const [addComment, setAddComment] = useState([]);
   const [showAddComment, setShowAddComment] = useState(false);
+
+  const [addComment, setAddComment] = useState();
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -27,14 +30,14 @@ const Post = ({ postId, title, content, comments, createdBy, CreatedAt }) => {
     console.log(postId);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v1/posts/${postId}`,
+        `http://localhost:5000/api/v1/comment/${postId}`,
         {
           method: "PATCH",
           headers: {
             "Content-type": "application/json",
             "Authorization": `Bearer ${token}`,
           },
-          body: JSON.stringify({ "replies": addComment }),
+          body: JSON.stringify({ "comment": addComment, "userId": userId }),
         }
       );
       if (!response.ok) {
@@ -42,16 +45,17 @@ const Post = ({ postId, title, content, comments, createdBy, CreatedAt }) => {
           `This is an HTTP error: The status is ${response.status}`
         );
       }
-      let commentsData = await response.json();
-      setAddComment(commentsData);
+      // let commentsData = await response.json();
+      // setAddComment(commentsData);
       setError(null);
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
-      // window.location.reload();
+      window.location.reload();
     }
   };
+
   return (
     <div className="post">
       <div className="post-text" id={postId}>
@@ -78,20 +82,24 @@ const Post = ({ postId, title, content, comments, createdBy, CreatedAt }) => {
         {showComments && (
           <div className="comments-section">
             {comments.length !== 0 ? (
-              comments.map((comment) => <Comment comment={comment} />)
+              comments.map((comment) => (
+                <Comment key={comment} comment={comment} />
+              ))
             ) : (
               <p className="commentP">No comments yet</p>
             )}
           </div>
         )}
+
         {showAddComment && (
           <form onSubmit={handleAddComment}>
             <input
               id="addComment"
               type="text"
               placeholder="Add a comment"
+              value={addComment}
               onChange={(e) => {
-                setAddComment(addComment.concat(e.target.value));
+                setAddComment(e.target.value);
               }}
             />
             <button>Add Comment</button>

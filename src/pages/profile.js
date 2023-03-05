@@ -5,6 +5,8 @@ import Img from "../components/images/Img";
 import ImgReady from "../components/images/ImgReady";
 import UserInfo from "../components/userInfo/UserInfo";
 import PasswordChange from "../components/userInfo/PasswordChange";
+import Navbar from "../components/navbar/Navbar";
+import Footer from "../components/footer/Footer";
 
 const Profile = () => {
   //
@@ -86,6 +88,7 @@ const Profile = () => {
 
   return (
     <div className="bg">
+      <Navbar />
       <div className="container profile">
         <div className="profile-divs">
           <div className="profile-left">
@@ -118,6 +121,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
