@@ -54,11 +54,18 @@ section {
   overflow: scroll;
 } */
 .home,
-.posts,
 .profile {
-  /* max-height: 90vh; */
   min-height: 90vh;
-  /* overflow: scroll; */
+}
+
+.posts {
+  min-height: 122vh;
+}
+.posts-right {
+  max-height: 122vh;
+  height: 122vh;
+  min-height: 122vh;
+  overflow: scroll;
 }
 
 ::-webkit-scrollbar {

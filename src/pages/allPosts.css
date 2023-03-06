@@ -47,7 +47,9 @@
   /* background: #c5d1fa; */
   background: #42a4fd73;
   padding: 10px;
-  border-radius: 15px;
+  /* border-radius: 15px; */
+  border-radius: 0px 10px 0px 0px;
+  box-shadow: -8px 10px 10px #0000002b;
 }
 .messages {
   margin-top: 15px;
@@ -56,7 +58,9 @@
   /* background: #c5d1fa; */
   background: #42a4fd73;
   padding: 10px;
-  border-radius: 15px;
+  /* border-radius: 15px; */
+  border-radius: 0px 10px 0px 0px;
+  box-shadow: -8px 10px 10px #0000002b;
 }
 
 .posts h2 {
