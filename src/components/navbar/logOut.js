@@ -3,7 +3,7 @@ const userLoggedOut = (e) => {
   // e.preventDefault();
   //   console.log(data.user.name);
   localStorage.clear();
-  //handle invalid login
+  window.location.reload(false);
 };
 
 export default userLoggedOut;

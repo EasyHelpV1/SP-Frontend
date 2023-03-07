@@ -1,6 +1,7 @@
 /* jshint esversion: 8 */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PasswordChecklist from "react-password-checklist";
 import userRegistered from "./registered";
 import "./Register.css";
 
@@ -8,29 +9,39 @@ const Register = (props) => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [firstN, setFirstN] = useState("");
   const [lastN, setLastN] = useState("");
   const [birthDate, setBirthDate] = useState("");
   const [phone, setPhone] = useState("");
-  // const [userImg, setUserImg] = useState("");
+
+  const [password, setPassword] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
+  const [isValidPass, setIsValidPass] = useState(false);
+
+  const validPass = (isIt) => {
+    setIsValidPass(isIt);
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    const user = { firstN, lastN, birthDate, email, phone, password };
-    fetch("https://sp-backend-b70z.onrender.com/api/v1/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((response) => response.json())
-      .then((json) => userRegistered(json))
-      .catch((error) => console.log(error));
-    setTimeout(() => {
-      navigate("/allPosts");
-    }, 500);
+    if (isValidPass) {
+      const user = { firstN, lastN, birthDate, email, phone, password };
+      fetch("https://sp-backend-b70z.onrender.com/api/v1/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((response) => response.json())
+        .then((json) => userRegistered(json))
+        .catch((error) => console.log(error));
+      setTimeout(() => {
+        navigate("/allPosts");
+      }, 500);
+    } else {
+      console.log(isValidPass);
+    }
   };
 
   return (
@@ -85,13 +96,32 @@ const Register = (props) => {
             placeholder="password"
             required
           />
-          {/* <input
-            value={userImg}
-            onChange={(e) => setUserImg(e.target.value)}
-            type="file"
-            id="userImg"
+          <input
+            value={passwordAgain}
+            onChange={(e) => setPasswordAgain(e.target.value)}
+            type="password"
+            id="passwordAgain"
+            placeholder="confirm password"
             required
-          /> */}
+          />
+          <div id="passError">
+            <PasswordChecklist
+              rules={[
+                "minLength",
+                "specialChar",
+                "number",
+                "capital",
+                "match",
+                "lowercase",
+              ]}
+              minLength={5}
+              value={password}
+              valueAgain={passwordAgain}
+              onChange={(isValid) => {
+                validPass(isValid);
+              }}
+            />
+          </div>
           <div className="form-btns">
             <button className="register-btn">Register</button>
             <button

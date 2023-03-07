@@ -36,3 +36,12 @@ form button {
   justify-content: center;
   width: 50%;
 }
+#passError {
+  /* background: var(--sky); */
+  border-radius: 5px;
+  font-size: 16px;
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 5px;
+}
