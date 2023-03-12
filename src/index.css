@@ -7,17 +7,26 @@
   --color-white: #fff;
   --dark-text: #333;
   --brown: #a8c5e3;
-  --peach: #cfbbfd;
+  /* --peach: #cfbbfd; */
+  --peach: #ae8ff3;
   --yllow: #c5d1fa;
   --blue: #aaa8e3;
-  --sky: #bbedfd;
+  /* --sky: #bbedfd; */
+  /* --sky: #101330; */
+  --sky: white;
   --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   --bright-blue: #42a4fd;
-  --bg-grad: radial-gradient(
+  --bg-grad: linear-gradient(
+    330deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(141, 97, 255, 0.8925945378151261) 0%,
+    rgba(0, 119, 255, 0.45) 100%
+  );
+  /* --bg-grad: radial-gradient(
     circle,
     rgba(63, 94, 251, 1) 0%,
     rgba(70, 191, 252, 1) 100%
-  );
+  ); */
 }
 
 * {
@@ -34,6 +43,8 @@ html {
 body {
   font-family: var(--font-family);
   background: var(--bg-grad);
+  min-height: 100vh;
+  background-repeat: no-repeat;
   /* background: var(--dark-blue); */
   /* background: white; */
 }

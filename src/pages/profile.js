@@ -7,6 +7,7 @@ import UserInfo from "../components/userInfo/UserInfo";
 import PasswordChange from "../components/userInfo/PasswordChange";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
+import globalVars from "../globalVars";
 
 const Profile = () => {
   //
@@ -24,16 +25,13 @@ const Profile = () => {
     //fetch user data
     const getData = async () => {
       try {
-        const response = await fetch(
-          `https://sp-backend-b70z.onrender.com/api/v1/users/${userId}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-type": "application/json",
-              "Authorization": `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await fetch(`${globalVars.PORT}/users/${userId}`, {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        });
         if (!response.ok) {
           throw new Error(
             `This is an HTTP error: The status is ${response.status}`
@@ -58,28 +56,22 @@ const Profile = () => {
   const handleDeletePhoto = async (e) => {
     e.preventDefault();
     // first delete image from db
-    const deleteReq = await fetch(
-      `https://sp-backend-b70z.onrender.com/api/v1/imgs/${uImg}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-      }
-    );
+    const deleteReq = await fetch(`${globalVars.PORT}/imgs/${uImg}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    });
     //edit user image field
     user.userImg = null;
-    const updateUser = await fetch(
-      `https://sp-backend-b70z.onrender.com/api/v1/users/${userId}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify(user),
-      }
-    )
+    const updateUser = await fetch(`${globalVars.PORT}/users/${userId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify(user),
+    })
       .then(() => setUImg(null))
       .then(() => console.log("Delete successful"));
   };

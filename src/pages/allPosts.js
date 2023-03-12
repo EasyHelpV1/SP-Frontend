@@ -5,6 +5,7 @@ import CreatePost from "../components/post/createPost";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
 import "./allPosts.css";
+import globalVars from "../globalVars";
 import moment from "moment";
 
 const AllPosts = () => {
@@ -24,7 +25,7 @@ const AllPosts = () => {
   };
 
   useEffect(() => {
-    getData("https://sp-backend-b70z.onrender.com/api/v1/posts/");
+    getData(`${globalVars.PORT}/posts`);
   }, []);
 
   return (

@@ -1,6 +1,7 @@
 /* jshint esversion: 8 */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import globalVars from "../../globalVars";
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const CreatePost = () => {
 
     console.log(`got token ${token}`);
 
-    fetch("https://sp-backend-b70z.onrender.com/api/v1/posts/", {
+    fetch(`${globalVars.PORT}/posts`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -40,20 +41,15 @@ const CreatePost = () => {
             type="text"
             id="title"
             placeholder="Post Title"
+            required
           />
-          {/* <input
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            type="text"
-            id="content"
-            placeholder="Post Content"
-          /> */}
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             type="text"
             id="content"
             placeholder="Post Content"
+            required
           />
 
           <button className="create-btn">Create Post</button>

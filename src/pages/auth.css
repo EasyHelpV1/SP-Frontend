@@ -33,3 +33,13 @@ input::file-selector-button {
   border-radius: 0.5rem;
   padding: 4px;
 }
+.error-msg {
+  background: #ffffff;
+  text-align: center;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 16px;
+  font-weight: 600;
+  color: red;
+}

@@ -1,6 +1,7 @@
 /* jshint esversion: 8 */
 import React, { useState } from "react";
 import Comment from "./Comment";
+import globalVars from "../../globalVars";
 import { MdInsertComment } from "react-icons/md";
 import { MdAddComment } from "react-icons/md";
 import "./Post.css";
@@ -29,17 +30,14 @@ const Post = ({ postId, title, content, comments, createdBy, CreatedAt }) => {
     e.preventDefault();
     console.log(postId);
     try {
-      const response = await fetch(
-        `https://sp-backend-b70z.onrender.com/api/v1/comment/${postId}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-type": "application/json",
-            "Authorization": `Bearer ${token}`,
-          },
-          body: JSON.stringify({ "comment": addComment, "userId": userId }),
-        }
-      );
+      const response = await fetch(`${globalVars.PORT}/comment/${postId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({ "comment": addComment, "userId": userId }),
+      });
       if (!response.ok) {
         throw new Error(
           `This is an HTTP error: The status is ${response.status}`

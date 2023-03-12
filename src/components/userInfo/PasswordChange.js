@@ -1,6 +1,7 @@
 /* jshint esversion: 8 */
 import { React, useState } from "react";
 import PasswordChecklist from "react-password-checklist";
+import globalVars from "../../globalVars";
 
 const PasswordChange = ({ user }) => {
   const [oldPassword, setOldPassword] = useState("");
@@ -25,7 +26,7 @@ const PasswordChange = ({ user }) => {
       const userPasses = { oldPassword, newPassword };
       try {
         const response = await fetch(
-          `https://sp-backend-b70z.onrender.com/api/v1/users/changePassword/${userId}`,
+          `${globalVars.PORT}/users/changePassword/${userId}`,
           {
             method: "PATCH",
             headers: {

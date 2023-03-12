@@ -1,5 +1,6 @@
 /* jshint esversion: 8 */
 import React, { useState } from "react";
+import globalVars from "../../globalVars";
 
 const Img = () => {
   const [file, setFile] = useState(null);
@@ -19,16 +20,13 @@ const Img = () => {
     formData.append("image", file);
     formData.append("userId", userId);
 
-    const response = await fetch(
-      "https://sp-backend-b70z.onrender.com/api/v1/imgs/",
-      {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
-        body: formData,
-      }
-    );
+    const response = await fetch(`${globalVars.PORT}/imgs/`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+      body: formData,
+    });
 
     const data = await response.json();
     console.log(data);

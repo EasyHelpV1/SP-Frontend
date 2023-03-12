@@ -1,6 +1,7 @@
 /*jshint esversion: 8*/
 import React, { useEffect, useState } from "react";
 import moment from "moment";
+import globalVars from "../../globalVars";
 
 const Comment = ({ comment }) => {
   const [actualComment, setActualComment] = useState([]);
@@ -11,16 +12,13 @@ const Comment = ({ comment }) => {
   useEffect(() => {
     const getCommentData = async () => {
       try {
-        const response = await fetch(
-          `https://sp-backend-b70z.onrender.com/api/v1/comment/${comment}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-type": "application/json",
-              "Authorization": `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await fetch(`${globalVars.PORT}/comment/${comment}`, {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        });
         if (!response.ok) {
           throw new Error(
             `This is an HTTP error: The status is ${response.status}`

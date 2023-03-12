@@ -1,25 +1,28 @@
 /* jshint esversion: 8 */
 import React, { useEffect, useState } from "react";
-import "./Navbar.css";
 import { FaRegHandshake } from "react-icons/fa";
-import { AiOutlineBars } from "react-icons/ai";
-import { RiCloseLine } from "react-icons/ri";
-import "../UI/button/Button.css";
+import { useNavigate } from "react-router-dom";
 import { Nav, NavLink, NavMenu } from "./NavbarElements";
-import userLoggedOut from "./logOut";
+import "./Navbar.css";
+import "../UI/button/Button.css";
 
 const Navbar = () => {
   const [loading, setLoading] = useState(true);
-  const [showMenu, setShowMenu] = useState(false);
   const [token, setToken] = useState(null);
 
-  // const toggleMenu = () => {
-  //   setShowMenu(!showMenu);
-  // };
+  const navigate = useNavigate();
+
   useEffect(() => {
     setToken(localStorage.getItem("token"));
     setLoading(false);
   }, []);
+
+  const userLoggedOut = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    navigate("/");
+    // window.location.reload(false);
+  };
 
   if (!loading) {
     return (
@@ -36,7 +39,7 @@ const Navbar = () => {
               <NavLink to="/">Home</NavLink>
               <NavLink to="/allPosts">Posts</NavLink>
               <NavLink to="/profile">Profile</NavLink>
-              <NavLink onClick={(e) => userLoggedOut()} to="/">
+              <NavLink onClick={userLoggedOut} to="/">
                 Logout
               </NavLink>
             </NavMenu>
@@ -49,13 +52,6 @@ const Navbar = () => {
             </NavMenu>
           )}
         </Nav>
-        {/* <div className="menu-icons" onClick={toggleMenu}>
-          {showMenu ? (
-            <RiCloseLine color="#ffc47d" size={30} />
-          ) : (
-            <AiOutlineBars color="#ffc47d" size={30} />
-          )}
-        </div> */}
       </nav>
     );
   } else {

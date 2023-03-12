@@ -1,6 +1,7 @@
 .footer {
   /* background: #ffffff1a; */
-  background: #42a4fd73;
+  /* background: #87affd73; */
+  background: var(--bg-grad);
   color: var(--dark-blue);
   /* min-width: 100%; */
   min-height: 13vh;

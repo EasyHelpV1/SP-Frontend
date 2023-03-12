@@ -2,6 +2,7 @@
 import { React, useState, useEffect } from "react";
 import { MdEdit } from "react-icons/md";
 import moment from "moment";
+import globalVars from "../../globalVars";
 
 const UserInfo = ({ user }) => {
   const [elementStates, setElementStates] = useState({});
@@ -31,17 +32,14 @@ const UserInfo = ({ user }) => {
     const newUserInfo = { firstN, lastN, email, phone };
 
     try {
-      const response = await fetch(
-        `https://sp-backend-b70z.onrender.com/api/v1/users/${userId}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-type": "application/json",
-            "Authorization": `Bearer ${token}`,
-          },
-          body: JSON.stringify(newUserInfo),
-        }
-      );
+      const response = await fetch(`${globalVars.PORT}/users/${userId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(newUserInfo),
+      });
       if (!response.ok) {
         throw new Error(
           `This is an HTTP error: The status is ${response.status}`
