@@ -43,7 +43,6 @@ const Login = (props) => {
     }
   };
 
-  //return
   return (
     <div className="container login">
       <h2>Log in to your account</h2>

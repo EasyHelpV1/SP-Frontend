@@ -16,7 +16,7 @@
 .login-btn {
   margin: 2rem;
   font-size: 1.4rem;
-  background: var(--peach);
+  background: var(--sky);
   /* border: 1px solid var(--sky); */
   color: var(--dark-blue);
   cursor: pointer;
@@ -25,6 +25,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  box-shadow: 0px 10px 10px #0000002b;
 }
 input::file-selector-button {
   background: var(--dark-blue);

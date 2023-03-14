@@ -57,6 +57,7 @@ p.timing {
   font-size: 1.6rem;
   font-weight: 500;
   margin: 0.5rem;
+  box-shadow: -8px 10px 10px #0000002b;
 }
 textarea#content {
   min-height: 20vh;
@@ -68,6 +69,7 @@ textarea#content {
   padding: 1rem;
   margin: 5px;
   resize: none;
+  box-shadow: 0px 10px 10px #0000002b;
 }
 input#title {
   min-width: 96%;
@@ -98,8 +100,8 @@ p#add-comment {
 p.commentP {
   min-block-size: auto;
   background: lavender;
-  min-width: 70%;
-  width: 71%;
+  min-width: 60%;
+  width: 61%;
   margin: 0.5rem 0;
   margin-top: 0;
   min-block-size: auto;
@@ -140,4 +142,10 @@ span.commentTime {
   width: 40%;
   margin: 1rem;
   text-align: right;
+}
+.post-img {
+  max-width: 4rem;
+  border-radius: 50%;
+  margin-right: 5px;
+  margin-bottom: 2px;
 }

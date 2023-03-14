@@ -11,21 +11,37 @@ import moment from "moment";
 const AllPosts = () => {
   const [posts, setPosts] = useState([]);
 
-  const getData = async function (url) {
-    const token = localStorage.getItem("token");
-    return await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => setPosts(json));
-  };
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getData(`${globalVars.PORT}/posts`);
+    const getPostsData = async () => {
+      const token = localStorage.getItem("token");
+
+      try {
+        const response = await fetch(`${globalVars.PORT}/posts`, {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+        let result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(`This is an HTTP error: The status is ${result.msg}`);
+        }
+
+        setPosts(result);
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getPostsData();
   }, []);
 
   return (
@@ -43,18 +59,29 @@ const AllPosts = () => {
             </div>
           </div>
           <div className="posts-right">
-            {posts.map((post) => (
-              <Post
-                key={post._id}
-                postId={post._id}
-                title={post.title}
-                content={post.content}
-                comments={post.comments}
-                // createdBy={post.authorName}
-                createdBy={`${post.userData[0].firstN} ${post.userData[0].lastN}`}
-                CreatedAt={moment(post.createdAt).utc().format("YYYY-MM-DD")}
-              />
-            ))}
+            {!loading && (
+              <div>
+                {posts.map((post) => (
+                  <Post
+                    key={post._id}
+                    postId={post._id}
+                    title={post.title}
+                    content={post.content}
+                    comments={post.comments}
+                    // createdBy={post.authorName}
+                    createdBy={`${post.userData[0].firstN} ${post.userData[0].lastN}`}
+                    userPhoto={`${post.userData[0].userImg}`}
+                    CreatedAt={moment(post.createdAt)
+                      .utc()
+                      .format("YYYY-MM-DD")}
+                  />
+                ))}
+              </div>
+            )}
+            {error && <div className="error-msg">{error}</div>}
+            {!loading && posts.length == 0 && (
+              <div className="error-msg">No posts yet</div>
+            )}
           </div>
         </div>
       </div>
