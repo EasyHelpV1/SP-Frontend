@@ -1,34 +1,39 @@
 /* jshint esversion: 8 */
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import globalVars from "../../globalVars";
 
 const CreatePost = () => {
-  const navigate = useNavigate();
-  // const [userId, setUserId] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    const post = { title, content };
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    const post = { title, content };
     const token = localStorage.getItem("token");
 
-    console.log(`got token ${token}`);
-
-    fetch(`${globalVars.PORT}/posts`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-      body: JSON.stringify(post),
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json))
-      .then(window.location.reload(false));
-    navigate("/allPosts", { replace: true });
+    try {
+      const response = await fetch(`${globalVars.PORT}/posts`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(post),
+      });
+      let result = await response.json();
+      if (!response.ok) {
+        throw new Error(`${result.msg}`);
+      }
+      window.location.reload(false);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <div className="container createPost">
@@ -55,6 +60,7 @@ const CreatePost = () => {
           <button className="create-btn">Create Post</button>
         </div>
       </form>
+      {!loading && error && <div className="error-msg">{error}</div>}
     </div>
   );
 };

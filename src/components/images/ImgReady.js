@@ -3,16 +3,16 @@ import { React, useEffect, useState } from "react";
 import { imagefrombuffer } from "imagefrombuffer";
 import globalVars from "../../globalVars";
 
-const ImgReady = ({ userImg }) => {
+const ImgReady = ({ userImg, imgClass }) => {
   const [userImage, setUserImage] = useState();
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const token = localStorage.getItem("token");
-
   useEffect(() => {
     const getData = async () => {
+      const token = localStorage.getItem("token");
+
       try {
         const response = await fetch(`${globalVars.PORT}/imgs/${userImg}`, {
           method: "GET",
@@ -20,14 +20,13 @@ const ImgReady = ({ userImg }) => {
             "Authorization": `Bearer ${token}`,
           },
         });
+
+        let result = await response.json();
+
         if (!response.ok) {
-          throw new Error(
-            `This is an HTTP error: The status is ${response.status}`
-          );
+          throw new Error(`This is an HTTP error: The status is ${result}`);
         }
-        let imgData = await response.json();
-        setUserImage(imgData);
-        console.log(imgData);
+        setUserImage(result);
         setError(null);
       } catch (err) {
         setError(err.message);
@@ -41,7 +40,10 @@ const ImgReady = ({ userImg }) => {
   if (!loading) {
     return (
       <div className="image">
+        {error && <div className="error-msg">{error}</div>}
         <img
+          className={imgClass}
+          alt="user"
           src={imagefrombuffer({
             type: userImage.img.type,
             data: userImage.img.data,

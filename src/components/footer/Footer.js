@@ -18,7 +18,7 @@ const Footer = () => {
       </div>
       <div className="footer-third">
         <div className="logo">
-          <p className="logo-text">EasyHelp</p>
+          <p className="logo-text">Easy Help</p>
           <FaRegHandshake color="#BBEDFD" size={40} />
         </div>
         <p>&copy; Copyright 2021 EasyHelp.com</p>

@@ -4,21 +4,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5rem;
+  margin-top: 10rem;
   margin-left: 15rem;
-  /* background: var(--bg-grad); */
-  /* border-radius: 1rem; */
 }
 .text {
   width: 100%;
-  /* margin-left: 8rem; */
-  /* margin-top: 2rem; */
   font-size: 12px;
   max-width: 95vh;
 }
 .info-register img {
   width: 100%;
-  /* margin-right: 3rem; */
-  /* margin-top: 3rem; */
   max-width: 130vh;
 }

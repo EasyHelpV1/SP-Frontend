@@ -1,10 +1,12 @@
 /* jshint esversion: 8 */
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./home.css";
+// components
 import ppl from "../assets/ppl.png";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
+// css
+import "./home.css";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -66,5 +68,3 @@ const Home = () => {
 };
 
 export default Home;
-
-//main page

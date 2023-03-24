@@ -1,18 +1,23 @@
 /* jshint esversion: 8 */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import userLoggedIn from "./loggedIn";
-import "./Login.css";
 import globalVars from "../../globalVars";
 
 const Login = (props) => {
   //consts
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  //login works
+  const userLoggedIn = (data) => {
+    localStorage.setItem("user", JSON.stringify(data.user));
+    localStorage.setItem("token", data.token);
+  };
 
   //handle login
   const handleLogin = async (e) => {
@@ -32,7 +37,7 @@ const Login = (props) => {
       if (!response.ok) {
         throw new Error(`${result.msg}`);
       }
-      // let userData = await response.json();
+
       userLoggedIn(result);
       setError(null);
       navigate("/allPosts");
@@ -71,7 +76,7 @@ const Login = (props) => {
               Register
             </button>
           </div>
-          {error && <div className="error-msg">{error}</div>}
+          {!loading && error && <div className="error-msg">{error}</div>}
         </div>
       </form>
     </div>

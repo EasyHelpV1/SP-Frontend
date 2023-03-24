@@ -1,5 +1,5 @@
 /*jshint esversion:8*/
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import { MdEdit } from "react-icons/md";
 import moment from "moment";
 import globalVars from "../../globalVars";
@@ -9,14 +9,9 @@ const UserInfo = ({ user }) => {
 
   const [userCopy, setUserCopy] = useState(user);
 
-  // console.log(userCopy);
-  // useEffect(() => {
-  //   setUserCopy(user);
-  // }, [userCopy]);
-  // console.log(userCopy);
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   //user info states
   const [firstN, setFirstN] = useState(userCopy.firstN);
@@ -40,20 +35,22 @@ const UserInfo = ({ user }) => {
         },
         body: JSON.stringify(newUserInfo),
       });
+
+      let result = await response.json();
+
       if (!response.ok) {
-        throw new Error(
-          `This is an HTTP error: The status is ${response.status}`
-        );
+        throw new Error(`${result.msg}`);
       }
-      let userData = await response.json();
-      setUserCopy(userData);
-      setError(null);
+      setSuccess("Change success...");
+      setTimeout(() => {
+        setError(null);
+        setUserCopy(result);
+        window.location.reload();
+      }, 2000);
     } catch (err) {
       setError(err.message);
-      // setUser(null);
     } finally {
       setLoading(false);
-      window.location.reload();
     }
   };
 
@@ -64,6 +61,7 @@ const UserInfo = ({ user }) => {
     }));
   }
 
+  // if(!loading){}
   return (
     <div className="user-fields">
       <div className="info-field-header">
@@ -146,6 +144,8 @@ const UserInfo = ({ user }) => {
           elementStates["lastNToggle"] ||
           elementStates["emailToggle"] ||
           elementStates["phoneToggle"]) && <button>Save Changes</button>}
+        {error && <div className="error-msg">{error}</div>}
+        {success && <div className="success-msg">{success}</div>}
       </form>
     </div>
   );

@@ -1,12 +1,12 @@
 /*jshint esversion: 8*/
 import React, { useEffect, useState } from "react";
-import { imagefrombuffer } from "imagefrombuffer";
+import { MdAddComment } from "react-icons/md";
 import moment from "moment";
+import ImgReady from "../images/ImgReady";
 import globalVars from "../../globalVars";
 
 const Comment = ({ comment }) => {
   const [actualComment, setActualComment] = useState([]);
-  const [userImage, setUserImage] = useState();
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -26,7 +26,7 @@ const Comment = ({ comment }) => {
         let result = await response.json();
 
         if (!response.ok) {
-          throw new Error(`This is an HTTP error: The status is ${result.msg}`);
+          throw new Error(`${result.msg}`);
         }
 
         setActualComment(result);
@@ -40,58 +40,35 @@ const Comment = ({ comment }) => {
     getCommentData();
   }, [comment]);
 
-  // console.log(actualComment[0].userData[0].userImg);
-  const getPhotoData = async () => {
-    const token = localStorage.getItem("token");
-    try {
-      const response = await fetch(
-        `${globalVars.PORT}/imgs/${actualComment[0].userData[0].userImg}`,
-        {
-          method: "GET",
-          headers: {
-            "Authorization": `Bearer ${token}`,
-          },
-        }
-      );
-      let result = await response.json();
-      if (!response.ok) {
-        throw new Error(`This is an HTTP error: The status is ${result}`);
-      }
-      setUserImage(result);
-      setError(null);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   if (!loading) {
-    getPhotoData();
     return (
       <div className="comment-stuff">
-        {/* {error && <div className="error-msg">{error}</div>} */}
-        {userImage && (
-          <div className="image">
-            <a href="#">
-              <img
-                className="post-img"
-                src={imagefrombuffer({
-                  type: userImage.img.type,
-                  data: userImage.img.data,
-                })}
-              ></img>
-            </a>
-          </div>
-        )}
-        <p className="commentP"> {actualComment[0].content}</p>
-        <p className="commentAuthor">
-          {actualComment[0].userData[0].firstN}{" "}
-          {actualComment[0].userData[0].lastN}
-        </p>
-        <span className="commentTime">
-          {moment(actualComment[0].createdAt).utc().format("YYYY-MM-DD")}
-        </span>
+        {error && <div className="error-msg">{error}</div>}
+        {/* {actualComment[0].userData[0].userImg && ( */}
+        <a href="#a">
+          <ImgReady
+            userImg={
+              actualComment[0].userData[0].userImg
+                ? actualComment[0].userData[0].userImg
+                : "641d1dcd34c9ed492688ecfa"
+            }
+            imgClass="comment-img"
+          />
+        </a>
+        {/* )} */}
+        <div className="comment-details">
+          <p className="commentAuthor">
+            {actualComment[0].userData[0].firstN}{" "}
+            {actualComment[0].userData[0].lastN}
+          </p>
+          <p className="commentP"> {actualComment[0].content}</p>
+          <span className="commentTime">
+            {moment(actualComment[0].createdAt).utc().format("YYYY-MM-DD")}
+          </span>
+          <span className="commentReply">
+            <MdAddComment color="black" size={20} />
+          </span>
+        </div>
       </div>
     );
   } else {

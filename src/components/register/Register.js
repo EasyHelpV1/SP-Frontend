@@ -2,15 +2,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PasswordChecklist from "react-password-checklist";
-import userRegistered from "./registered";
 import globalVars from "../../globalVars";
-import "./Register.css";
 
 const Register = (props) => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   const [email, setEmail] = useState("");
   const [firstN, setFirstN] = useState("");
@@ -21,6 +20,12 @@ const Register = (props) => {
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
   const [isValidPass, setIsValidPass] = useState(false);
+
+  // //register works
+  // const userRegistered = (data) => {
+  //   // localStorage.setItem("user", JSON.stringify(data.user));
+  //   // localStorage.setItem("token", data.token);
+  // };
 
   const validPass = (isIt) => {
     setIsValidPass(isIt);
@@ -43,10 +48,12 @@ const Register = (props) => {
         if (!response.ok) {
           throw new Error(`${result.msg}`);
         }
-
-        userRegistered(result);
-        setError(null);
-        navigate("/allPosts");
+        setSuccess("User registered, redirecting...");
+        setTimeout(() => {
+          setError(null);
+          // userRegistered(result);
+          navigate("/allPosts");
+        }, 5000);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -144,7 +151,8 @@ const Register = (props) => {
               Log in
             </button>
           </div>
-          {error && <div className="error-msg">{error}</div>}
+          {!loading && error && <div className="error-msg">{error}</div>}
+          {success && <div className="success-msg">{success}</div>}
         </div>
       </form>
     </div>

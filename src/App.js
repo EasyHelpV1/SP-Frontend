@@ -9,10 +9,10 @@ import Home from "./pages/home";
 import Auth from "./pages/auth";
 import Profile from "./pages/profile";
 
+//import components
 import ProtectedRoute from "./util/ProtectedRoute";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
-//import components
 
 function App() {
   return (

@@ -1,22 +1,13 @@
 .footer {
-  /* background: #ffffff1a; */
-  /* background: #87affd73; */
   background: var(--bg-grad);
   color: var(--dark-blue);
-  /* min-width: 100%; */
   min-height: 13vh;
-  /* position: absolute; */
-  /* left: 0; */
-  /* right: 0; */
-  /* bottom: 0; */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   row-gap: 2rem;
   column-gap: 2rem;
-  /* max-width: 1050px; */
   margin: 0 auto;
   padding: 0 20px;
-  /* border-radius: 0.5rem 0.5rem 0 0; */
 }
 .footer-first,
 .footer-second,

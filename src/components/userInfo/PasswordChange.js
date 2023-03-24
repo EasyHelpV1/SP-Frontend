@@ -6,15 +6,12 @@ import globalVars from "../../globalVars";
 const PasswordChange = ({ user }) => {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
-
   const [passwordAgain, setPasswordAgain] = useState("");
   const [isValidPass, setIsValidPass] = useState(false);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const userId = JSON.parse(localStorage.getItem("user"))._id;
-  const token = localStorage.getItem("token");
+  const [success, setSuccess] = useState(null);
 
   const validPass = (isIt) => {
     setIsValidPass(isIt);
@@ -24,6 +21,8 @@ const PasswordChange = ({ user }) => {
     e.preventDefault();
     if (isValidPass) {
       const userPasses = { oldPassword, newPassword };
+      const userId = JSON.parse(localStorage.getItem("user"))._id;
+      const token = localStorage.getItem("token");
       try {
         const response = await fetch(
           `${globalVars.PORT}/users/changePassword/${userId}`,
@@ -36,31 +35,32 @@ const PasswordChange = ({ user }) => {
             body: JSON.stringify(userPasses),
           }
         );
+        let result = await response.json();
         if (!response.ok) {
-          throw new Error(
-            `This is an HTTP error: The status is ${response.status}`
-          );
+          throw new Error(`${result.msg}`);
         }
-        // let userData = await response.json();
-        // setUserCopy(userData);
-        // setError(null);
+        setSuccess("Change password success, redirecting...");
+        setTimeout(() => {
+          setError(null);
+          localStorage.clear();
+          window.location.reload();
+        }, 5000);
       } catch (err) {
         setError(err.message);
-        // setUser(null);
       } finally {
         setLoading(false);
-        localStorage.clear();
-        window.location.reload();
       }
     } else {
-      console.log(isValidPass);
+      setError("You did not enter a new valid password.");
     }
   };
 
   return (
     <div className="options">
-      <form onSubmit={changePass}>
+      <div className="info-field-header">
         <h2>Change Password</h2>
+      </div>
+      <form onSubmit={changePass}>
         <div className="info-field">
           <p className="a-field">Old Password</p>
           <input
@@ -109,6 +109,8 @@ const PasswordChange = ({ user }) => {
           />
         </div>
         <button>Save Password</button>
+        {error && <div className="error-msg">{error}</div>}
+        {success && <div className="success-msg">{success}</div>}
       </form>
     </div>
   );
