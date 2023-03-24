@@ -76,7 +76,7 @@ const AllPosts = () => {
                     }
                     CreatedAt={moment(post.createdAt)
                       .utc()
-                      .format("YYYY-MM-DD")}
+                      .format("MMMM Do YYYY, h:mm:ss a")}
                   />
                 ))}
               </div>

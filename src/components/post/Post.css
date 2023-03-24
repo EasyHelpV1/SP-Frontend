@@ -169,7 +169,7 @@ input#addComment {
 span.commentReply {
   position: absolute;
   right: 10px;
-  bottom: 5px;
+  /* bottom: 5px; */
 }
 .u-text-small {
   font-size: 1.3rem;
