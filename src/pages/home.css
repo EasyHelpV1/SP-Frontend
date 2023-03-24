@@ -1,22 +1,18 @@
 .info-register {
-  width: 100%;
+  width: 80%;
   height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: var(--bg-grad); */
-  /* border-radius: 1rem; */
+  margin-top: 10rem;
+  margin-left: 15rem;
 }
 .text {
-  width: 35%;
-  margin-left: 8rem;
-  margin-top: 2rem;
+  width: 100%;
   font-size: 12px;
-  max-width: 75vh;
+  max-width: 95vh;
 }
 .info-register img {
-  width: 60%;
-  margin-right: 3rem;
-  /* margin-top: 3rem; */
-  max-width: 95vh;
+  width: 100%;
+  max-width: 130vh;
 }

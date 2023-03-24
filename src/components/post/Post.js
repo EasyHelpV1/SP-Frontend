@@ -1,22 +1,31 @@
 /* jshint esversion: 8 */
-import React, { useState } from "react";
-import Comment from "./Comment";
+import { React, useState, useEffect } from "react";
 import { MdInsertComment } from "react-icons/md";
 import { MdAddComment } from "react-icons/md";
+import ImgReady from "../images/ImgReady";
+import Comment from "./Comment";
+import globalVars from "../../globalVars";
 import "./Post.css";
 
-const Post = ({ postId, title, content, comments, createdBy, CreatedAt }) => {
+const Post = ({
+  postId,
+  title,
+  content,
+  comments,
+  createdBy,
+  userPhoto,
+  CreatedAt,
+}) => {
   // states
   const [showComments, setShowComments] = useState(false);
   const [showAddComment, setShowAddComment] = useState(false);
 
-  const [addComment, setAddComment] = useState();
+  const [addComment, setAddComment] = useState("");
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const userId = JSON.parse(localStorage.getItem("user"))._id;
-  const token = localStorage.getItem("token");
+  const [userImage, setUserImage] = useState();
 
   const handleViewComments = () => {
     setShowComments(!showComments);
@@ -24,29 +33,23 @@ const Post = ({ postId, title, content, comments, createdBy, CreatedAt }) => {
   const handleShowAddComment = () => {
     setShowAddComment(!showAddComment);
   };
-
   const handleAddComment = async (e) => {
     e.preventDefault();
-    console.log(postId);
+    const userId = JSON.parse(localStorage.getItem("user"))._id;
+    const token = localStorage.getItem("token");
     try {
-      const response = await fetch(
-        `https://sp-backend-b70z.onrender.com/api/v1/comment/${postId}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-type": "application/json",
-            "Authorization": `Bearer ${token}`,
-          },
-          body: JSON.stringify({ "comment": addComment, "userId": userId }),
-        }
-      );
+      const response = await fetch(`${globalVars.PORT}/comment/${postId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify({ "comment": addComment, "userId": userId }),
+      });
+      const result = await response.json();
       if (!response.ok) {
-        throw new Error(
-          `This is an HTTP error: The status is ${response.status}`
-        );
+        throw new Error(`This is an HTTP error: The status is ${result.msg}`);
       }
-      // let commentsData = await response.json();
-      // setAddComment(commentsData);
       setError(null);
     } catch (err) {
       setError(err.message);
@@ -59,13 +62,20 @@ const Post = ({ postId, title, content, comments, createdBy, CreatedAt }) => {
   return (
     <div className="post">
       <div className="post-text" id={postId}>
+        {/* /// */}
         <div className="post-headings">
+          {userPhoto && (
+            <a href="#">
+              <ImgReady userImg={userPhoto} imgClass="post-img" />
+            </a>
+          )}
+          <h3 className="heading-right">{createdBy}</h3>
           <h3 className="heading-left">{title}</h3>
-          <h3 className="heading-right">Posted by: {createdBy}</h3>
+          <p className="timing">{CreatedAt}</p>
         </div>
-
-        <p className="timing">Posted at: {CreatedAt}</p>
+        {/* /// */}
         <p className="u-text-small">{content}</p>
+        {/* /// */}
         <div className="comment-options">
           <p className="commentPShow" onClick={handleViewComments}>
             <MdInsertComment color="black" size={20} />
@@ -78,19 +88,7 @@ const Post = ({ postId, title, content, comments, createdBy, CreatedAt }) => {
             <MdAddComment color="black" size={20} />
           </p>
         </div>
-
-        {showComments && (
-          <div className="comments-section">
-            {comments.length !== 0 ? (
-              comments.map((comment) => (
-                <Comment key={comment} comment={comment} />
-              ))
-            ) : (
-              <p className="commentP">No comments yet</p>
-            )}
-          </div>
-        )}
-
+        {/* /// */}
         {showAddComment && (
           <form onSubmit={handleAddComment}>
             <input
@@ -103,8 +101,22 @@ const Post = ({ postId, title, content, comments, createdBy, CreatedAt }) => {
               }}
             />
             <button>Add Comment</button>
+            {!loading && error && <div className="error-msg">{error}</div>}
           </form>
         )}
+        {/* /// */}
+        {showComments && (
+          <div className="comments-section">
+            {comments.length !== 0 ? (
+              comments.map((comment) => (
+                <Comment key={comment} comment={comment} />
+              ))
+            ) : (
+              <p className="commentP">No comments yet</p>
+            )}
+          </div>
+        )}
+        {/* /// */}
       </div>
     </div>
   );

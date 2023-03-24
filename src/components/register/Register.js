@@ -2,11 +2,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PasswordChecklist from "react-password-checklist";
-import userRegistered from "./registered";
-import "./Register.css";
+import globalVars from "../../globalVars";
 
 const Register = (props) => {
   const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   const [email, setEmail] = useState("");
   const [firstN, setFirstN] = useState("");
@@ -18,27 +21,44 @@ const Register = (props) => {
   const [passwordAgain, setPasswordAgain] = useState("");
   const [isValidPass, setIsValidPass] = useState(false);
 
+  // //register works
+  // const userRegistered = (data) => {
+  //   // localStorage.setItem("user", JSON.stringify(data.user));
+  //   // localStorage.setItem("token", data.token);
+  // };
+
   const validPass = (isIt) => {
     setIsValidPass(isIt);
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     if (isValidPass) {
       const user = { firstN, lastN, birthDate, email, phone, password };
-      fetch("https://sp-backend-b70z.onrender.com/api/v1/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(user),
-      })
-        .then((response) => response.json())
-        .then((json) => userRegistered(json))
-        .catch((error) => console.log(error));
-      setTimeout(() => {
-        navigate("/allPosts");
-      }, 500);
+
+      try {
+        const response = await fetch(`${globalVars.PORT}/auth/register`, {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        });
+        let result = await response.json();
+        if (!response.ok) {
+          throw new Error(`${result.msg}`);
+        }
+        setSuccess("User registered, redirecting...");
+        setTimeout(() => {
+          setError(null);
+          // userRegistered(result);
+          navigate("/allPosts");
+        }, 5000);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     } else {
       console.log(isValidPass);
     }
@@ -131,6 +151,8 @@ const Register = (props) => {
               Log in
             </button>
           </div>
+          {!loading && error && <div className="error-msg">{error}</div>}
+          {success && <div className="success-msg">{success}</div>}
         </div>
       </form>
     </div>

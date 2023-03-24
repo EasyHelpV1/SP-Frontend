@@ -1,54 +1,3 @@
-.post {
-  /* display: flex; */
-  align-items: flex-start;
-  margin-bottom: 2rem;
-  /* padding: 5px; */
-  /* border: 1px solid var(--blue); */
-  /* border-radius: 10px; */
-  box-shadow: 8px 10px 10px #0000002b;
-}
-
-.post-text h3 {
-  font-size: 2rem;
-  font-weight: 200;
-  line-height: 1.4;
-  text-transform: capitalize;
-  padding: 0 5px;
-  background: var(--peach);
-  width: 50%;
-}
-
-.post-text p {
-  font-size: 1.5rem;
-  padding: 5px;
-  /* background: var(--sky); */
-  background: whitesmoke;
-  width: 100%;
-  min-height: 20vh;
-  min-width: 76vh;
-}
-
-.post-text {
-  color: var(--dark-blue);
-}
-
-.post-headings {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-h3.heading-left {
-  border-radius: 10px 0px 0px 0px;
-}
-
-h3.heading-right {
-  text-align: right;
-}
-p.timing {
-  min-height: auto;
-  background: lightblue;
-}
-
 .create-btn {
   background: var(--peach);
   border: none;
@@ -57,6 +6,7 @@ p.timing {
   font-size: 1.6rem;
   font-weight: 500;
   margin: 0.5rem;
+  box-shadow: -8px 10px 10px #0000002b;
 }
 textarea#content {
   min-height: 20vh;
@@ -68,9 +18,89 @@ textarea#content {
   padding: 1rem;
   margin: 5px;
   resize: none;
+  box-shadow: 0px 10px 10px #0000002b;
 }
 input#title {
   min-width: 96%;
+}
+.post {
+  align-items: flex-start;
+  margin-bottom: 3rem;
+  box-shadow: 8px 10px 10px #0000002b;
+}
+.post-text h3 {
+  font-size: 2rem;
+  font-weight: 200;
+  line-height: 1.4;
+  text-transform: capitalize;
+  padding: 0 5px;
+  background: var(--peach);
+  width: 50%;
+}
+.post-text p {
+  font-size: 1.5rem;
+  padding: 1rem 3rem;
+  background: whitesmoke;
+  width: 100%;
+  min-height: 20vh;
+  border-radius: 1rem 0rem 0rem 0rem;
+}
+.post-text {
+  color: var(--dark-blue);
+}
+.post-headings {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+h3.heading-left {
+  width: 80%;
+  border-radius: 1rem 0rem 0rem 0rem;
+  padding-left: 10px;
+  padding-top: 5px;
+  border: 1px solid var(--color-white);
+}
+h3.heading-right {
+  min-width: 20%;
+  width: 20%;
+  background: none;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+p.timing {
+  min-height: auto;
+  background: none;
+  position: absolute;
+  width: auto;
+  right: 0;
+  top: 7px;
+  padding: 7px;
+  font-size: 10px;
+}
+.comment-options {
+  display: flex;
+}
+.comment-options p {
+  min-width: 50%;
+  cursor: pointer;
+  border-radius: 0;
+}
+p#add-comment {
+  text-align: right;
+}
+.comments-section {
+  min-width: 100%;
+  width: 100%;
+  background: #e9f1fd;
+}
+p.commentP {
+  min-block-size: auto;
+  width: 85%;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  margin-left: 5rem;
+  padding: 1rem;
+  border-radius: 0;
 }
 p.commentPShow {
   min-block-size: fit-content;
@@ -79,41 +109,30 @@ p.commentPShow {
   font-weight: 600;
   padding: 1rem;
 }
-.comment-options {
-  display: flex;
-}
-.comment-options p {
-  min-width: 50%;
-  cursor: pointer;
-}
-p#add-comment {
-  text-align: right;
-}
-.comments-section {
-  min-width: 100%;
-  width: 100%;
-  background: #f3f4f7;
-  /* margin: 0px 1%; */
-}
-p.commentP {
+.comment-details {
+  position: relative;
+  min-width: 60%;
+  width: 91%;
+  margin: 1.5rem 0;
   min-block-size: auto;
   background: lavender;
-  min-width: 70%;
-  width: 71%;
-  margin: 0.5rem 0;
-  margin-top: 0;
-  min-block-size: auto;
-  background: lavender;
+  border-radius: 0rem 1rem 1rem 1rem;
+}
+span.commentTime {
+  font-size: 9px;
+  position: absolute;
+  right: 7px;
+  top: 7px;
 }
 p.commentAuthor {
   min-block-size: auto;
   background: lavender;
-  min-width: 20%;
-  width: 20%;
+  width: 30%;
   margin: 0.5rem 0;
   margin-top: 0;
   min-block-size: auto;
   background: lavender;
+  font-weight: 600;
 }
 .comment-stuff {
   display: flex;
@@ -130,14 +149,30 @@ input#addComment {
   width: 50%;
   height: 5rem;
 }
-span.commentTime {
-  margin-bottom: 5px;
-  margin-left: 6px;
-  padding: 6px;
-  background: var(--peach);
-}
 .post-text button {
   width: 40%;
   margin: 1rem;
   text-align: right;
+}
+.post-img {
+  max-width: 4rem;
+  border-radius: 50%;
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+.comment-img {
+  max-width: 3rem;
+  border-radius: 50%;
+  margin: 3px 3px;
+  margin-left: 1rem;
+}
+span.commentReply {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+}
+.u-text-small {
+  font-size: 1.3rem;
+  line-height: 1.4;
+  font-weight: 300;
 }

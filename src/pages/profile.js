@@ -7,12 +7,14 @@ import UserInfo from "../components/userInfo/UserInfo";
 import PasswordChange from "../components/userInfo/PasswordChange";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
+import globalVars from "../globalVars";
 
 const Profile = () => {
   //
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   const [uImg, setUImg] = useState("");
 
@@ -20,32 +22,24 @@ const Profile = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    //
-    //fetch user data
     const getData = async () => {
       try {
-        const response = await fetch(
-          `https://sp-backend-b70z.onrender.com/api/v1/users/${userId}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-type": "application/json",
-              "Authorization": `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await fetch(`${globalVars.PORT}/users/${userId}`, {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+        let result = await response.json();
         if (!response.ok) {
-          throw new Error(
-            `This is an HTTP error: The status is ${response.status}`
-          );
+          throw new Error(`${result.msg}`);
         }
-        let userData = await response.json();
-        setUser(userData);
-        setUImg(userData.userImg);
+        setUser(result);
+        setUImg(result.userImg);
         setError(null);
       } catch (err) {
         setError(err.message);
-        // setUser(null);
       } finally {
         setLoading(false);
       }
@@ -53,35 +47,53 @@ const Profile = () => {
     getData();
   }, []);
 
-  // console.log({ userId });
-
   const handleDeletePhoto = async (e) => {
     e.preventDefault();
     // first delete image from db
-    const deleteReq = await fetch(
-      `https://sp-backend-b70z.onrender.com/api/v1/imgs/${uImg}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-        },
+    try {
+      user.userImg = null;
+      const [editUser, delPhoto] = await Promise.all([
+        fetch(`${globalVars.PORT}/users/${userId}`, {
+          method: "PATCH",
+          headers: {
+            "Content-type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+          body: JSON.stringify(user),
+        }),
+        fetch(`${globalVars.PORT}/imgs/${uImg}`, {
+          method: "DELETE",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        }),
+      ]);
+      let result1 = await editUser.json();
+      let result2 = await delPhoto.json();
+      console.log(result1, result2);
+      if (!editUser.ok && !delPhoto.ok) {
+        console.log(result1, result2);
+        throw new Error(`${result1.msg} and ${result2.msg}`);
       }
-    );
-    //edit user image field
-    user.userImg = null;
-    const updateUser = await fetch(
-      `https://sp-backend-b70z.onrender.com/api/v1/users/${userId}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify(user),
+      if (!editUser.ok) {
+        console.log(result1);
+        throw new Error(`${result1.msg}`);
       }
-    )
-      .then(() => setUImg(null))
-      .then(() => console.log("Delete successful"));
+      if (!editUser.ok) {
+        console.log(result2);
+        throw new Error(`${result2.msg}`);
+      }
+      setSuccess("Photo deleted...");
+      setTimeout(() => {
+        setUImg(null);
+        setError(null);
+        window.location.reload();
+      }, 2000);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChangePhoto = (e) => {
@@ -93,11 +105,14 @@ const Profile = () => {
     <div className="bg">
       <Navbar />
       <div className="container profile">
+        {error && <div className="error-msg">{error}</div>}
+        {success && <div className="success-msg">{success}</div>}
+
         <div className="profile-divs">
           <div className="profile-left">
             <div className="photo">
               {uImg ? (
-                <ImgReady userImg={uImg} />
+                <ImgReady userImg={uImg} imgClass="image" />
               ) : (
                 <div>
                   <h2>Upload a Profile Picture</h2>
@@ -116,10 +131,7 @@ const Profile = () => {
           </div>
 
           <div className="profile-right">
-            {/* User info and editing */}
-            {/* {console.log(user)} */}
             <UserInfo user={user} />
-            {/* password change */}
             <PasswordChange user={user} />
           </div>
         </div>

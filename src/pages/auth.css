@@ -2,22 +2,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding: 1rem; */
   margin: 0.5rem;
-  /* border: none; */
-  /* border-radius: 5px; */
-  /* background: var(--peach); */
   color: var(--sky);
   outline: none;
-  /* width: 80%; */
   font-size: 1.6rem;
 }
 .register-btn,
 .login-btn {
   margin: 2rem;
   font-size: 1.4rem;
-  background: var(--peach);
-  /* border: 1px solid var(--sky); */
+  background: var(--sky);
   color: var(--dark-blue);
   cursor: pointer;
   min-width: 13vh;
@@ -25,6 +19,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  box-shadow: 0px 10px 10px #0000002b;
 }
 input::file-selector-button {
   background: var(--dark-blue);
@@ -32,4 +27,54 @@ input::file-selector-button {
   border: none;
   border-radius: 0.5rem;
   padding: 4px;
+}
+h2 {
+  color: var(--sky);
+  font-size: 2rem;
+  text-shadow: 0px 7px 10px #0000002b;
+}
+form > * {
+  width: 100%;
+  max-width: 50rem;
+  margin: 3rem auto;
+}
+.register {
+  text-align: center;
+}
+.login {
+  text-align: center;
+}
+form input {
+  padding: 1rem;
+  border-radius: 5px;
+  background: var(--sky);
+  color: var(--dark-blue);
+  outline: none;
+  width: 80%;
+  font-size: 1.6rem;
+  box-shadow: 0px 10px 10px #0000002b;
+  border: 0;
+  margin: 0.5rem;
+}
+form button {
+  display: flex;
+  padding: 1rem;
+  background: var(--dark-blue);
+  border: none;
+  border-radius: 5px;
+  color: var(--sky);
+  font-size: 1.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+#passError {
+  border-radius: 5px;
+  font-size: 16px;
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 5px;
 }

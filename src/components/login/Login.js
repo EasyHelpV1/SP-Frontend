@@ -1,38 +1,53 @@
 /* jshint esversion: 8 */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import userLoggedIn from "./loggedIn";
-import "./Login.css";
+import globalVars from "../../globalVars";
 
 const Login = (props) => {
   //consts
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  //login works
+  const userLoggedIn = (data) => {
+    localStorage.setItem("user", JSON.stringify(data.user));
+    localStorage.setItem("token", data.token);
+  };
+
   //handle login
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(email);
 
     const user = { email, password };
 
-    fetch("https://sp-backend-b70z.onrender.com/api/v1/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((response) => response.json())
-      .then((json) => userLoggedIn(json))
-      .catch((error) => console.log(error));
-    setTimeout(() => {
+    try {
+      const response = await fetch(`${globalVars.PORT}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+      let result = await response.json();
+      if (!response.ok) {
+        throw new Error(`${result.msg}`);
+      }
+
+      userLoggedIn(result);
+      setError(null);
       navigate("/allPosts");
-    }, 500);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  //return
   return (
     <div className="container login">
       <h2>Log in to your account</h2>
@@ -61,6 +76,7 @@ const Login = (props) => {
               Register
             </button>
           </div>
+          {!loading && error && <div className="error-msg">{error}</div>}
         </div>
       </form>
     </div>
