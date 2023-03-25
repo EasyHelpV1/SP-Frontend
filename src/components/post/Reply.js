@@ -49,7 +49,7 @@ const Reply = ({ reply }) => {
             userImg={
               actualReply[0].userData[0].userImg
                 ? actualReply[0].userData[0].userImg
-                : "641d1dcd34c9ed492688ecfa"
+                : `${process.env.DEFAULT_PHOTO}`
             }
             imgClass="reply-img"
           />

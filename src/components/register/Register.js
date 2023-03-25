@@ -56,7 +56,7 @@ const Register = (props) => {
         setLoading(false);
       }
     } else {
-      console.log(isValidPass);
+      setError("You did not enter a new valid password.");
     }
   };
 

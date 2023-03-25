@@ -34,15 +34,14 @@ const Comment = ({ comment }) => {
       });
       const result = await response.json();
       if (!response.ok) {
-        console.log(result);
         throw new Error(`${result.msg}`);
       }
       setError(null);
+      window.location.reload(false);
     } catch (err) {
       setError(err.message);
     } finally {
       setLoading(false);
-      // window.location.reload();
     }
   };
 
@@ -75,8 +74,6 @@ const Comment = ({ comment }) => {
     getCommentData();
   }, [comment]);
 
-  console.log(actualComment);
-
   if (!loading) {
     return (
       <div className="comment-stuff">
@@ -87,7 +84,7 @@ const Comment = ({ comment }) => {
             userImg={
               actualComment[0].userData[0].userImg
                 ? actualComment[0].userData[0].userImg
-                : "641d1dcd34c9ed492688ecfa"
+                : `${process.env.DEFAULT_PHOTO}`
             }
             imgClass="comment-img"
           />

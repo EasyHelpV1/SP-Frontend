@@ -64,11 +64,17 @@ const Post = ({
       <div className="post-text" id={postId}>
         {/* /// */}
         <div className="post-headings">
-          {userPhoto && (
+          {/* {userPhoto && (
             <a href="#">
               <ImgReady userImg={userPhoto} imgClass="post-img" />
             </a>
-          )}
+          )} */}
+          <a href="#a">
+            <ImgReady
+              userImg={userPhoto ? userPhoto : `${process.env.DEFAULT_PHOTO}`}
+              imgClass="post-img"
+            />
+          </a>
           <h3 className="heading-right">{createdBy}</h3>
           <h3 className="heading-left">{title}</h3>
           <p className="timing">{CreatedAt}</p>
