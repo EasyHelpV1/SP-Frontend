@@ -1,5 +1,5 @@
 /* jshint esversion: 8 */
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //css
 import "./App.css";
@@ -8,11 +8,10 @@ import AllPosts from "./pages/allPosts";
 import Home from "./pages/home";
 import Auth from "./pages/auth";
 import Profile from "./pages/profile";
+import EmailConfirmation from "./pages/EmailConfirmation";
 
 //import components
 import ProtectedRoute from "./util/ProtectedRoute";
-import Navbar from "./components/navbar/Navbar";
-import Footer from "./components/footer/Footer";
 
 function App() {
   return (
@@ -29,6 +28,7 @@ function App() {
             }
           />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/confirmed" element={<EmailConfirmation />} />
           <Route
             path="/profile"
             element={

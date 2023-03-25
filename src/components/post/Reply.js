@@ -61,9 +61,7 @@ const Reply = ({ reply }) => {
           </p>
           <p className="replyP"> {actualReply[0].content}</p>
           <span className="replyTime">
-            {moment(actualReply[0].createdAt)
-              .utc()
-              .format("MMMM Do YYYY, h:mm:ss a")}
+            {moment(actualReply[0].createdAt).utc().format("lll")}
           </span>
         </div>
       </div>

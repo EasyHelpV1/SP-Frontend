@@ -74,9 +74,8 @@ const AllPosts = () => {
                         ? `${post.userData[0].userImg}`
                         : `641d1dcd34c9ed492688ecfa`
                     }
-                    CreatedAt={moment(post.createdAt)
-                      .utc()
-                      .format("MMMM Do YYYY, h:mm:ss a")}
+                    CreatedAt={moment(post.createdAt).utc().format("lll")}
+                    // .format("MMMM Do YYYY, h:mm:ss a")
                   />
                 ))}
               </div>

@@ -21,12 +21,6 @@ const Register = (props) => {
   const [passwordAgain, setPasswordAgain] = useState("");
   const [isValidPass, setIsValidPass] = useState(false);
 
-  // //register works
-  // const userRegistered = (data) => {
-  //   // localStorage.setItem("user", JSON.stringify(data.user));
-  //   // localStorage.setItem("token", data.token);
-  // };
-
   const validPass = (isIt) => {
     setIsValidPass(isIt);
   };
@@ -48,7 +42,9 @@ const Register = (props) => {
         if (!response.ok) {
           throw new Error(`${result.msg}`);
         }
-        setSuccess("User registered, redirecting...");
+        setSuccess(
+          "User registered Please check your email for the verification link, redirecting..."
+        );
         setTimeout(() => {
           setError(null);
           // userRegistered(result);

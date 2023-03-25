@@ -105,9 +105,7 @@ const Comment = ({ comment }) => {
             </span>
           </p>
           <span className="commentTime">
-            {moment(actualComment[0].createdAt)
-              .utc()
-              .format("MMMM Do YYYY, h:mm:ss a")}
+            {moment(actualComment[0].createdAt).utc().format("lll")}
           </span>
 
           {showAddReply && (
