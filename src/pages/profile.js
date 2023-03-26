@@ -70,17 +70,13 @@ const Profile = () => {
       ]);
       let result1 = await editUser.json();
       let result2 = await delPhoto.json();
-      console.log(result1, result2);
       if (!editUser.ok && !delPhoto.ok) {
-        console.log(result1, result2);
         throw new Error(`${result1.msg} and ${result2.msg}`);
       }
       if (!editUser.ok) {
-        console.log(result1);
         throw new Error(`${result1.msg}`);
       }
       if (!editUser.ok) {
-        console.log(result2);
         throw new Error(`${result2.msg}`);
       }
       setSuccess("Photo deleted...");

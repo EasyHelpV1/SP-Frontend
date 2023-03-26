@@ -8,6 +8,7 @@ import AllPosts from "./pages/allPosts";
 import Home from "./pages/home";
 import Auth from "./pages/auth";
 import Profile from "./pages/profile";
+import OtherUser from "./components/otherUser/OtherUser";
 import EmailConfirmation from "./pages/EmailConfirmation";
 
 //import components
@@ -30,10 +31,19 @@ function App() {
           <Route path="/auth" element={<Auth />} />
           <Route path="/confirmed" element={<EmailConfirmation />} />
           <Route
+            exact
             path="/profile"
             element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile/:userId"
+            element={
+              <ProtectedRoute>
+                <OtherUser />
               </ProtectedRoute>
             }
           />

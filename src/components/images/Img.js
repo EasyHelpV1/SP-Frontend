@@ -24,6 +24,10 @@ const Img = () => {
     formData.append("userId", userId);
 
     try {
+      if (file.size > 65000) {
+        console.log("File is too big!");
+        throw new Error("File is too big!");
+      }
       const response = await fetch(`${globalVars.PORT}/imgs/`, {
         method: "POST",
         headers: {
