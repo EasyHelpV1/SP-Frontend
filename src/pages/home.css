@@ -16,3 +16,24 @@
   width: 100%;
   max-width: 130vh;
 }
+.info-social {
+  position: relative;
+  text-align: center;
+  margin: 10rem auto;
+  border-top: 4px solid #00ffff4a;
+}
+.links {
+  margin: 4rem 0;
+}
+.links a {
+  display: inline-block;
+  margin: 2rem;
+}
+.links a:hover {
+  box-shadow: 0px 5px 10px aqua;
+}
+.info-social h1 {
+  margin-top: 7rem;
+  margin-bottom: 0rem;
+  font-size: 30px;
+}

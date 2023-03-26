@@ -4,6 +4,7 @@ import { FaRegHandshake } from "react-icons/fa";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 import "./Navbar.css";
+import logo from "../../assets/logo.png";
 
 const Nav = styled.nav``;
 const NavLink = styled(Link)``;
@@ -29,8 +30,9 @@ const Navbar = () => {
       <nav className="container navbar">
         <NavLink to="/">
           <div className="logo">
-            <p className="logo-text">Easy Help</p>
-            <FaRegHandshake color="#BBEDFD" size={40} />
+            <img src={logo} alt="logo" />
+            {/* <p className="logo-text">Easy Help</p>
+            <FaRegHandshake color="#BBEDFD" size={40} /> */}
           </div>
         </NavLink>
         <Nav>
