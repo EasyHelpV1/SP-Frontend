@@ -14,18 +14,15 @@ const Img = () => {
   const handleImg = async (e) => {
     e.preventDefault();
 
-    if (!file) {
-      console.log("No file selected");
-      return;
-    }
-
     const formData = new FormData();
     formData.append("image", file);
     formData.append("userId", userId);
 
     try {
+      if (!file) {
+        throw new Error("No file selected");
+      }
       if (file.size > 65000) {
-        console.log("File is too big!");
         throw new Error("File is too big!");
       }
       const response = await fetch(`${globalVars.PORT}/imgs/`, {

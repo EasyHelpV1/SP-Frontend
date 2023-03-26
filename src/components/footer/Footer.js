@@ -1,6 +1,7 @@
 /*jshint esversion: 8*/
 import React from "react";
 import "./Footer.css";
+import logo from "../../assets/logo.png";
 import { FaRegHandshake } from "react-icons/fa";
 
 const Footer = () => {
@@ -18,10 +19,12 @@ const Footer = () => {
       </div>
       <div className="footer-third">
         <div className="logo">
-          <p className="logo-text">Easy Help</p>
-          <FaRegHandshake color="#BBEDFD" size={40} />
+          <img src={logo} alt="logo" />
+
+          {/* <p className="logo-text">Easy Help</p>
+          <FaRegHandshake color="#BBEDFD" size={40} /> */}
         </div>
-        <p>&copy; Copyright 2021 EasyHelp.com</p>
+        {/* <p>&copy; Copyright 2021 EasyHelp.com</p> */}
       </div>
     </div>
   );
