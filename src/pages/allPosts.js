@@ -68,6 +68,7 @@ const AllPosts = () => {
                     title={post.title}
                     content={post.content}
                     comments={post.comments}
+                    createdById={post.createdBy}
                     createdBy={`${post.userData[0].firstN} ${post.userData[0].lastN}`}
                     userPhoto={
                       post.userData[0].userImg

@@ -97,13 +97,13 @@ const Register = (props) => {
             placeholder="youremail@example.com"
             required
           />
-          <input
+          {/* <input
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             type="phone"
             id="phone"
             placeholder="0123456789"
-          />
+          /> */}
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}

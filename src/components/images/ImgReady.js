@@ -36,6 +36,10 @@ const ImgReady = ({ userImg, imgClass }) => {
     };
     getData();
   }, []);
+  const readImg = (image) => {
+    const base64String = btoa(String.fromCharCode(...new Uint8Array(image)));
+    return `data:image/png;base64,${base64String}`;
+  };
 
   if (!loading) {
     return (
@@ -44,10 +48,11 @@ const ImgReady = ({ userImg, imgClass }) => {
         <img
           className={imgClass}
           alt="user"
-          src={imagefrombuffer({
-            type: userImage.img.type,
-            data: userImage.img.data,
-          })}
+          src={`${readImg(userImage.img.data)}`}
+          // src={imagefrombuffer({
+          //   type: userImage.img.type,
+          //   data: userImage.img.data,
+          // })}
         ></img>
       </div>
     );

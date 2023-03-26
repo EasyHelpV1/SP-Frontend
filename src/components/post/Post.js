@@ -2,6 +2,7 @@
 import { React, useState, useEffect } from "react";
 import { MdInsertComment } from "react-icons/md";
 import { MdAddComment } from "react-icons/md";
+import { Link } from "react-router-dom";
 import ImgReady from "../images/ImgReady";
 import Comment from "./Comment";
 import globalVars from "../../globalVars";
@@ -12,6 +13,7 @@ const Post = ({
   title,
   content,
   comments,
+  createdById,
   createdBy,
   userPhoto,
   CreatedAt,
@@ -64,17 +66,14 @@ const Post = ({
       <div className="post-text" id={postId}>
         {/* /// */}
         <div className="post-headings">
-          {/* {userPhoto && (
-            <a href="#">
-              <ImgReady userImg={userPhoto} imgClass="post-img" />
-            </a>
-          )} */}
-          <a href="#a">
+          <Link to={`/profile/${createdById}`}>
             <ImgReady
               userImg={userPhoto ? userPhoto : `${process.env.DEFAULT_PHOTO}`}
               imgClass="post-img"
             />
-          </a>
+          </Link>
+          {/* <a href="#a">
+          </a> */}
           <h3 className="heading-right">{createdBy}</h3>
           <h3 className="heading-left">{title}</h3>
           <p className="timing">{CreatedAt}</p>

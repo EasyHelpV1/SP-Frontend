@@ -1,6 +1,7 @@
 /*jshint esversion: 8*/
 import { React, useEffect, useState } from "react";
 import moment from "moment";
+import { Link } from "react-router-dom";
 import ImgReady from "../images/ImgReady";
 import globalVars from "../../globalVars";
 import "./Reply.css";
@@ -44,7 +45,7 @@ const Reply = ({ reply }) => {
     return (
       <div className="reply-stuff">
         {error && <div className="error-msg">{error}</div>}
-        <a href="#a">
+        <Link to={`/profile/${actualReply[0].createdBy}`}>
           <ImgReady
             userImg={
               actualReply[0].userData[0].userImg
@@ -53,7 +54,7 @@ const Reply = ({ reply }) => {
             }
             imgClass="reply-img"
           />
-        </a>
+        </Link>
         <div className="reply-details">
           <p className="replyAuthor">
             {actualReply[0].userData[0].firstN}{" "}
