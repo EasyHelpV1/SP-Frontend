@@ -4,6 +4,9 @@ import globalVars from "../../globalVars";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
+  const [money, setMoney] = useState("");
+  const [time, setTime] = useState("");
+  const [urgency, setUrgency] = useState(false);
   const [content, setContent] = useState("");
 
   const [loading, setLoading] = useState(true);
@@ -12,7 +15,7 @@ const CreatePost = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    const post = { title, content };
+    const post = { title, money, time, urgency, content };
     const token = localStorage.getItem("token");
 
     try {
@@ -28,7 +31,7 @@ const CreatePost = () => {
       if (!response.ok) {
         throw new Error(`${result.msg}`);
       }
-      window.location.reload(false);
+      // window.location.reload(false);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -46,8 +49,38 @@ const CreatePost = () => {
             type="text"
             id="title"
             placeholder="Post Title"
+            className="formLabel"
             required
           />
+          <input
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            type="text"
+            id="time"
+            placeholder="Aproximate time needed"
+            className="formLabel"
+            required
+          />
+          <label htmlFor="money" className="formLabel">
+            Is this a paid or unpaid task?
+            <select
+              value={money}
+              id="money"
+              onChange={(e) => setMoney(e.target.value)}
+            >
+              <option value="paid">Paid</option>
+              <option value="unpaid">Unpaid</option>
+            </select>
+          </label>
+          <label htmlFor="urgency" className="formLabel">
+            <input
+              // value={urgency}
+              onChange={(e) => setUrgency(e.target.checked)}
+              type="checkbox"
+              id="urgency"
+            />
+            This is urgent
+          </label>
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}

@@ -54,9 +54,9 @@ const AllPosts = () => {
             <div className="create">
               <CreatePost />
             </div>
-            <div className="messages">
+            {/* <div className="messages">
               <h2>Messages div</h2>
-            </div>
+            </div> */}
           </div>
           <div className="posts-right">
             {!loading && (
@@ -66,6 +66,9 @@ const AllPosts = () => {
                     key={post._id}
                     postId={post._id}
                     title={post.title}
+                    money={post.money}
+                    time={post.time}
+                    urgency={post.urgency}
                     content={post.content}
                     comments={post.comments}
                     createdById={post.createdBy}
