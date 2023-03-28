@@ -15,8 +15,8 @@
   margin: 3rem;
 } */
 .logo img {
-  max-width: 29rem;
-  margin-top: 4rem;
+  width: 130px;
+  margin-left: 4rem;
 }
 .logo-text {
   font-size: 4rem;

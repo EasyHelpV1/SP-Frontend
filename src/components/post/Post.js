@@ -1,5 +1,5 @@
 /* jshint esversion: 8 */
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import { MdInsertComment } from "react-icons/md";
 import { MdAddComment } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -11,6 +11,9 @@ import "./Post.css";
 const Post = ({
   postId,
   title,
+  money,
+  time,
+  urgency,
   content,
   comments,
   createdById,
@@ -27,7 +30,7 @@ const Post = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [userImage, setUserImage] = useState();
+  // const [userImage, setUserImage] = useState();
 
   const handleViewComments = () => {
     setShowComments(!showComments);
@@ -78,8 +81,14 @@ const Post = ({
           <h3 className="heading-left">{title}</h3>
           <p className="timing">{CreatedAt}</p>
         </div>
+
         {/* /// */}
         <p className="u-text-small">{content}</p>
+        <div className="post-properties">
+          <p className="time">Estimated time needed: {time}</p>
+          <p className="money">This request is {money}</p>
+          {urgency && <p className="urgency">Urgent</p>}
+        </div>
         {/* /// */}
         <div className="comment-options">
           <p className="commentPShow" onClick={handleViewComments}>
