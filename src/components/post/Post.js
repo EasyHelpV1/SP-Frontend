@@ -2,6 +2,7 @@
 import { React, useState } from "react";
 import { MdInsertComment } from "react-icons/md";
 import { MdAddComment } from "react-icons/md";
+import { GoPrimitiveDot } from "react-icons/go";
 import { Link } from "react-router-dom";
 import ImgReady from "../images/ImgReady";
 import Comment from "./Comment";
@@ -11,6 +12,8 @@ import "./Post.css";
 const Post = ({
   postId,
   title,
+  date,
+  location,
   money,
   time,
   urgency,
@@ -83,11 +86,22 @@ const Post = ({
         </div>
 
         {/* /// */}
-        <p className="u-text-small">{content}</p>
-        <div className="post-properties">
-          <p className="time">Estimated time needed: {time}</p>
-          <p className="money">This request is {money}</p>
-          {urgency && <p className="urgency">Urgent</p>}
+        <div className="inside-post">
+          <p className="u-text-small">
+            {urgency && (
+              <span className="urgent-dot">
+                <GoPrimitiveDot color="red" size={30} />
+              </span>
+            )}
+            {content}
+          </p>
+          <div className="post-properties">
+            <p className="date">When? {date}</p>
+            <p className="location">Where? {location}</p>
+            <p className="time">Estimated time needed: {time}</p>
+            <p className="money">This request is {money}</p>
+            {/* {urgency && <p className="urgency">Urgent</p>} */}
+          </div>
         </div>
         {/* /// */}
         <div className="comment-options">

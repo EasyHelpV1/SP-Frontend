@@ -11,8 +11,8 @@
 textarea#content {
   min-height: 20vh;
   min-width: 96%;
-  background: var(--peach);
-  color: var(--sky);
+  font-size: 1.6rem;
+  font-family: var(--font-family);
   border: none;
   border-radius: 6px;
   padding: 1rem;
@@ -38,12 +38,22 @@ input#title {
   width: 50%;
 }
 .post-text p {
+  position: relative;
   font-size: 1.5rem;
   padding: 1rem 3rem;
-  background: whitesmoke;
+  background: #87affd73;
   width: 100%;
-  min-height: 20vh;
+  min-height: auto;
+  /* min-height: 20vh; */
   border-radius: 1rem 0rem 0rem 0rem;
+}
+.post-properties {
+  width: 50%;
+}
+.urgent-dot {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .post-text {
   color: var(--dark-blue);
@@ -94,6 +104,7 @@ p#add-comment {
   background: #e9f1fd;
 }
 p.commentP {
+  background: white;
   min-block-size: auto;
   width: 85%;
   margin-top: 0;
@@ -175,4 +186,7 @@ span.commentReply {
   font-size: 1.3rem;
   line-height: 1.4;
   font-weight: 300;
+}
+.inside-post {
+  display: flex;
 }

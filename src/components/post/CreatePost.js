@@ -6,6 +6,8 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [money, setMoney] = useState("");
   const [time, setTime] = useState("");
+  const [date, setDate] = useState("");
+  const [location, setLocation] = useState("");
   const [urgency, setUrgency] = useState(false);
   const [content, setContent] = useState("");
 
@@ -15,7 +17,7 @@ const CreatePost = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    const post = { title, money, time, urgency, content };
+    const post = { title, date, location, money, time, urgency, content };
     const token = localStorage.getItem("token");
 
     try {
@@ -31,7 +33,7 @@ const CreatePost = () => {
       if (!response.ok) {
         throw new Error(`${result.msg}`);
       }
-      // window.location.reload(false);
+      window.location.reload(false);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -52,7 +54,29 @@ const CreatePost = () => {
             className="formLabel"
             required
           />
+          {/* <label htmlFor="date" style={font-size: 1.6rem;
+    margin: 0.7rem;}>
+            When do you need this help? */}
           <input
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            type="date"
+            id="date"
+            // placeholder="Enter date"
+            className="formLabel"
+            required
+          />
+          {/* </label> */}
+          <input
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            type="text"
+            id="location"
+            placeholder="Location"
+            className="formLabel"
+            required
+          />
+          {/* <input
             value={time}
             onChange={(e) => setTime(e.target.value)}
             type="text"
@@ -60,7 +84,21 @@ const CreatePost = () => {
             placeholder="Aproximate time needed"
             className="formLabel"
             required
-          />
+          /> */}
+          <label htmlFor="time" className="formLabel">
+            Time neccessary
+            <select
+              value={time}
+              id="time"
+              onChange={(e) => setTime(e.target.value)}
+            >
+              <option value="Choose One">Choose One</option>
+              <option value="1 hour">1 hour</option>
+              <option value="Less than an hour">Less than an hour</option>
+              <option value="Few hours">Few hours</option>
+              <option value="Reccurring">Reccurring</option>
+            </select>
+          </label>
           <label htmlFor="money" className="formLabel">
             Is this a paid or unpaid task?
             <select
@@ -68,6 +106,7 @@ const CreatePost = () => {
               id="money"
               onChange={(e) => setMoney(e.target.value)}
             >
+              <option value="Choose One">Choose One</option>
               <option value="paid">Paid</option>
               <option value="unpaid">Unpaid</option>
             </select>

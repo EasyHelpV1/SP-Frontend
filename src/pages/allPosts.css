@@ -1,3 +1,6 @@
+body {
+  background: var(--color-white);
+}
 .title {
   text-align: center;
   text-transform: capitalize;
@@ -70,16 +73,19 @@ input#urgency {
   border: 0;
   margin: 0.5rem;
 }
-select#money {
+select#money,
+select#time {
   margin: 0 1rem;
 }
+.post-properties p.date,
+.post-properties p.location,
 .post-properties p.time,
 .post-properties p.money,
 .post-properties p.urgency {
   min-height: auto;
   border-radius: 0;
-  background: lavender;
-  border: 1px solid var(--color-white);
+  background: white;
+  border-bottom: 1px solid var(--yllow);
 }
 .post-properties p.urgency {
   background: #ff9797 !important;

@@ -10,6 +10,7 @@ import Auth from "./pages/auth";
 import Profile from "./pages/profile";
 import OtherUser from "./components/otherUser/OtherUser";
 import EmailConfirmation from "./pages/EmailConfirmation";
+import Admin from "./pages/Admin";
 
 //import components
 import ProtectedRoute from "./util/ProtectedRoute";
@@ -44,6 +45,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <OtherUser />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <Admin />
               </ProtectedRoute>
             }
           />
