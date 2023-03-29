@@ -29,7 +29,7 @@ const Home = () => {
           <div className="left">
             <div className="text">
               <h1>Communicate and Help</h1>
-              <h2>A space for cooperation</h2>
+              <h2 id="home">A space for cooperation</h2>
               <p>
                 Easy Help is a platform that allows you to communicate with
                 others and get assistance in achieving small easy tasks that
@@ -44,7 +44,7 @@ const Home = () => {
             <img src={ppl} alt="image of people helping" />
           </div>
         </div>
-        <div className="howto-info">
+        <div className="info-howto">
           <Features />
         </div>
 

@@ -66,6 +66,8 @@ const AllPosts = () => {
                     key={post._id}
                     postId={post._id}
                     title={post.title}
+                    date={moment(post.date).utc().format("lll")}
+                    location={post.location}
                     money={post.money}
                     time={post.time}
                     urgency={post.urgency}

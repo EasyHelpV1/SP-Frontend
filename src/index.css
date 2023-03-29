@@ -42,7 +42,7 @@ html {
 
 body {
   font-family: var(--font-family);
-  background: var(--bg-grad);
+  /* background: var(--bg-grad); */
   min-height: 100vh;
   background-repeat: no-repeat;
   /* background: var(--dark-blue); */

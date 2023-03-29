@@ -1,0 +1,42 @@
+body {
+  background: var(--color-white);
+}
+h2 {
+  color: var(--dark-blue);
+  /* margin: 3rem 0px; */
+}
+.container.adminOptions {
+  min-height: 90vh;
+  display: flex;
+  margin: 0 10%;
+}
+.options-menu,
+.display-form {
+  margin: 0 auto;
+  width: 40%;
+}
+li.ad-options:hover {
+  color: var(--sky);
+}
+li.ad-options {
+  list-style: none;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: var(--yllow);
+  font-size: 1.6rem;
+  border-radius: 1rem;
+  width: 90%;
+}
+p.user-birth {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  font-size: 1.6rem;
+}
+.container.ResetuserPass {
+  background: var(--yllow);
+  padding: 3rem;
+  border-radius: 1rem;
+}
+#passError {
+  margin: 1rem;
+}

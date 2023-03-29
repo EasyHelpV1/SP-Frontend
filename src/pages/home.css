@@ -1,3 +1,6 @@
+body {
+  background: var(--color-white);
+}
 .info-register {
   width: 80%;
   height: 60vh;
@@ -12,6 +15,12 @@
   font-size: 12px;
   max-width: 95vh;
 }
+h2#home {
+  color: var(--dark-blue);
+  font-size: 1rem;
+  text-shadow: none;
+  margin: 0.5rem 0px;
+}
 .info-register img {
   width: 100%;
   max-width: 130vh;
@@ -20,7 +29,6 @@
   position: relative;
   text-align: center;
   margin: 10rem auto;
-  border-top: 4px solid #00ffff4a;
 }
 .links {
   margin: 4rem 0;
