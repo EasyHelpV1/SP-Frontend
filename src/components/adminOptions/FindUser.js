@@ -1,22 +1,23 @@
 /* jshint esversion: 8 */
 import { React, useState } from "react";
+import EditUser from "./EditUser";
 import globalVars from "../../globalVars";
 
-const DeleteUser = () => {
+const FindUser = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
 
-  const [email, setEmail] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
-  const handleDelete = async (e) => {
+  const [userInfo, setUserInfo] = useState("");
+  const handleFindUser = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
     try {
       const response = await fetch(
-        `${globalVars.PORT}/admin/DeleteUser/${email}`,
+        `${globalVars.PORT}/admin/FindUser/${userEmail}`,
         {
-          method: "Delete",
+          method: "GET",
           headers: {
             "Content-type": "application/json",
             "Authorization": `Bearer ${token}`,
@@ -27,11 +28,8 @@ const DeleteUser = () => {
       if (!response.ok) {
         throw new Error(`${result.msg}`);
       }
-      setSuccess("User Deleted");
+      setUserInfo(result);
       setError(null);
-      setTimeout(() => {
-        window.location.reload();
-      }, 5000);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -39,27 +37,27 @@ const DeleteUser = () => {
     }
   };
   return (
-    <div className="container DeleteUser">
-      <h2>Delete User</h2>
-      <form onSubmit={handleDelete}>
+    <div className="container EditUser">
+      <h2>Enter Email of User to Edit</h2>
+      <form onSubmit={handleFindUser}>
         <div className="form-control">
           <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            name="email"
-            id="email"
+            value={userEmail}
+            onChange={(e) => setUserEmail(e.target.value)}
+            type="useremail"
+            name="useremail"
+            id="useremail"
             placeholder="useremail@example.com"
             required
           />
-          <button className="submit-btn">Delete User</button>
+          <button className="submit-btn">Find User</button>
 
           {!loading && error && <div className="error-msg">{error}</div>}
-          {success && <div className="success-msg">{success}</div>}
         </div>
       </form>
+      {userInfo && <EditUser userInfo={userInfo} />}
     </div>
   );
 };
 
-export default DeleteUser;
+export default FindUser;

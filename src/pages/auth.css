@@ -1,6 +1,10 @@
 body {
   background: var(--bg-grad);
 }
+section#auth {
+  background: var(--bg-grad);
+  height: 100vh;
+}
 .form-btns {
   display: flex;
   align-items: center;
@@ -72,6 +76,8 @@ form button {
   align-items: center;
   justify-content: center;
   width: 50%;
+  margin: 2rem 1rem;
+  box-shadow: 2px 5px 10px gray;
 }
 #passError {
   border-radius: 5px;

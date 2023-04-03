@@ -6,7 +6,8 @@ import Footer from "../components/footer/Footer";
 import ResetUserPass from "../components/adminOptions/ResetUserPass";
 import DeleteUser from "../components/adminOptions/DeleteUser";
 import DeletePost from "../components/adminOptions/DeletePost";
-import EditUser from "../components/adminOptions/EditUser";
+// import EditUser from "../components/adminOptions/EditUser";
+import FindUser from "../components/adminOptions/FindUser";
 //css
 import "./Admin.css";
 
@@ -35,19 +36,19 @@ const Admin = () => {
             <li
               className="ad-options"
               onClick={() => {
-                toggleForm(<EditUser />);
+                toggleForm(<FindUser />);
               }}
             >
               Edit User
             </li>
-            <li
+            {/* <li
               className="ad-options"
               onClick={() => {
                 toggleForm(<DeleteUser />);
               }}
             >
               Delete User
-            </li>
+            </li> */}
             <li
               className="ad-options"
               onClick={() => {
@@ -58,7 +59,9 @@ const Admin = () => {
             </li>
           </ul>
         </div>
-        <div className="display-form">{currentForm}</div>
+        <div className="display-form">
+          {currentForm ? currentForm : <h1>Choose a form to display</h1>}
+        </div>
       </div>
       <Footer />
     </div>

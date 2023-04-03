@@ -97,44 +97,56 @@ const Profile = () => {
     setUImg(null);
   };
 
-  return (
-    <div className="bg">
-      <Navbar />
-      <div className="container profile">
-        {error && <div className="error-msg">{error}</div>}
-        {success && <div className="success-msg">{success}</div>}
+  if (!loading) {
+    return (
+      <div className="bg">
+        <Navbar />
+        <div className="container profile">
+          {error && <div className="error-msg">{error}</div>}
+          {success && <div className="success-msg">{success}</div>}
 
-        <div className="profile-divs">
-          <div className="profile-left">
-            <div className="photo">
-              {uImg ? (
-                <ImgReady userImg={uImg} imgClass="image" />
-              ) : (
-                <div>
-                  <h2>Upload a Profile Picture</h2>
-                  <Img />
-                </div>
-              )}
+          <div className="profile-divs">
+            <div className="profile-left">
+              <div className="photo">
+                {uImg ? (
+                  <ImgReady userImg={uImg} imgClass="image" />
+                ) : (
+                  <div>
+                    <h2>Upload a Profile Picture</h2>
+                    <Img />
+                  </div>
+                )}
+              </div>
+              <div className="photo-options">
+                {uImg ? (
+                  <div>
+                    <button onClick={handleDeletePhoto}>Delete Photo</button>
+                    <button onClick={handleChangePhoto}>Change Photo</button>
+                  </div>
+                ) : null}
+              </div>
             </div>
-            <div className="photo-options">
-              {uImg ? (
-                <div>
-                  <button onClick={handleDeletePhoto}>Delete Photo</button>
-                  <button onClick={handleChangePhoto}>Change Photo</button>
-                </div>
-              ) : null}
-            </div>
-          </div>
 
-          <div className="profile-right">
-            <UserInfo user={user} />
-            <PasswordChange user={user} />
+            <div className="profile-right">
+              {user && <UserInfo user={user} />}
+              {user && <PasswordChange user={user} />}
+            </div>
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="bg">
+        <Navbar />
+        <div className="container profile">
+          <div>Loading...</div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 };
 
 export default Profile;

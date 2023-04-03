@@ -22,7 +22,7 @@ li.ad-options {
   list-style: none;
   margin: 2rem 0;
   padding: 1rem;
-  background: var(--yllow);
+  background: var(--bg-grad);
   font-size: 1.6rem;
   border-radius: 1rem;
   width: 90%;
@@ -32,10 +32,13 @@ p.user-birth {
   margin-top: 1rem;
   font-size: 1.6rem;
 }
-.container.ResetuserPass {
-  background: var(--yllow);
-  padding: 3rem;
+.EditUser,
+.DeletePost,
+.ResetuserPass {
+  background: var(--bg-grad);
+  padding: 2rem;
   border-radius: 1rem;
+  margin-bottom: 10rem;
 }
 #passError {
   margin: 1rem;

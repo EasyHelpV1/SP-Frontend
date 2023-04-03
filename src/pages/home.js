@@ -2,6 +2,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { SiGmail } from "react-icons/si";
+import { FiArrowDown } from "react-icons/fi";
+import { FiArrowUp } from "react-icons/fi";
 import {
   FaFacebookSquare,
   FaInstagramSquare,
@@ -12,7 +14,7 @@ import {
 import ppl from "../assets/ppl.png";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
-import Features from "../components/features/Features";
+import HowTo from "../components/home/HowTo";
 // css
 import "./home.css";
 
@@ -25,7 +27,7 @@ const Home = () => {
     <div className="bg">
       <Navbar />
       <div className="container home">
-        <div className="info-register">
+        <div className="info-register" id="info-register">
           <div className="left">
             <div className="text">
               <h1>Communicate and Help</h1>
@@ -43,9 +45,14 @@ const Home = () => {
           <div className="right">
             <img src={ppl} alt="image of people helping" />
           </div>
+          <div className="go-down">
+            <a href="#about">
+              <FiArrowDown size={50} color="white" />
+            </a>
+          </div>
         </div>
-        <div className="info-howto">
-          <Features />
+        <div className="info-howto" id="about">
+          <HowTo />
         </div>
 
         <div className="info-social">
@@ -64,6 +71,11 @@ const Home = () => {
               <FaTwitterSquare color="#101330" size={40} />
             </a>
           </div>
+        </div>
+        <div className="go-up">
+          <a href="#info-register">
+            <FiArrowUp size={50} color="black" />
+          </a>
         </div>
       </div>
       <Footer />

@@ -2,33 +2,73 @@ body {
   background: var(--color-white);
 }
 .info-register {
-  width: 80%;
-  height: 60vh;
+  width: 100%;
+  height: 80vh;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10rem;
-  margin-left: 15rem;
+  margin: 0 auto;
+  padding: 10rem;
+  background: var(--bg-grad);
+  margin-top: -5rem;
 }
-.text {
-  width: 100%;
-  font-size: 12px;
-  max-width: 95vh;
+.go-down {
+  position: absolute;
+  bottom: 30px;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
+  animation-name: bounce;
+  animation-timing-function: ease;
+}
+.go-up {
+  position: absolute;
+  bottom: 1rem;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
+  animation-name: bounce;
+  animation-timing-function: ease;
+  right: 2rem;
+}
+.home {
+  position: relative;
+}
+.info-register .text {
+  font-size: 1.6rem;
+  max-width: 85%;
+  animation: fade-in 1s ease-out;
 }
 h2#home {
   color: var(--dark-blue);
-  font-size: 1rem;
+  font-size: 1.8rem;
   text-shadow: none;
-  margin: 0.5rem 0px;
+  margin: 1rem 0px;
 }
 .info-register img {
   width: 100%;
   max-width: 130vh;
+  animation: fade-in 1s ease-out;
 }
+.info-howto {
+  width: 100%;
+  height: auto;
+  position: relative;
+  margin: 0 auto;
+  padding: 5rem 10rem;
+}
+
 .info-social {
   position: relative;
   text-align: center;
   margin: 10rem auto;
+  background: var(--yllow);
+  width: 100%;
+  height: auto;
+  position: relative;
+  margin: 0 auto;
+  padding: 1rem;
 }
 .links {
   margin: 4rem 0;
@@ -36,12 +76,42 @@ h2#home {
 .links a {
   display: inline-block;
   margin: 2rem;
+  height: 35px;
+  width: 35px;
 }
 .links a:hover {
-  box-shadow: 0px 5px 10px aqua;
+  box-shadow: 0px 5px 10px white;
 }
 .info-social h1 {
   margin-top: 7rem;
   margin-bottom: 0rem;
   font-size: 30px;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-25px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes fade-in {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
 }

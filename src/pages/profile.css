@@ -100,13 +100,12 @@ body {
 }
 .profile-left button {
   margin: 1rem;
-  margin-left: 3%;
   min-width: 10rem;
   padding: 0.5rem;
-  background: var(--sky);
+  color: var(--sky);
   border: none;
   border-radius: 5px;
-  color: var(--dark-blue);
+  background: var(--dark-blue);
   font-weight: 600;
   cursor: pointer;
 }
