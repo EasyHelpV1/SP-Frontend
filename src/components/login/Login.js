@@ -45,6 +45,9 @@ const Login = (props) => {
       setError(err.message);
     } finally {
       setLoading(false);
+      setTimeout(function () {
+        localStorage.clear();
+      }, 60 * 60 * 1000); // login expires in 24hrs
     }
   };
 
