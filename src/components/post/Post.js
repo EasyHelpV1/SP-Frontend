@@ -73,10 +73,7 @@ const Post = ({
         {/* /// */}
         <div className="post-headings">
           <Link to={`/profile/${createdById}`}>
-            <ImgReady
-              userImg={userPhoto ? userPhoto : `${process.env.DEFAULT_PHOTO}`}
-              imgClass="post-img"
-            />
+            <ImgReady userImg={userPhoto} imgClass="post-img" />
           </Link>
           {/* <a href="#a">
           </a> */}

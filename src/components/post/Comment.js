@@ -82,11 +82,7 @@ const Comment = ({ comment }) => {
         {/* {actualComment[0].userData[0].userImg && ( */}
         <Link to={`/profile/${actualComment[0].createdBy}`}>
           <ImgReady
-            userImg={
-              actualComment[0].userData[0].userImg
-                ? actualComment[0].userData[0].userImg
-                : `${process.env.DEFAULT_PHOTO}`
-            }
+            userImg={actualComment[0].userData[0].userImg}
             imgClass="comment-img"
           />
         </Link>

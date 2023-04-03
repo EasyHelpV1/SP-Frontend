@@ -47,11 +47,7 @@ const Reply = ({ reply }) => {
         {error && <div className="error-msg">{error}</div>}
         <Link to={`/profile/${actualReply[0].createdBy}`}>
           <ImgReady
-            userImg={
-              actualReply[0].userData[0].userImg
-                ? actualReply[0].userData[0].userImg
-                : `${process.env.DEFAULT_PHOTO}`
-            }
+            userImg={actualReply[0].userData[0].userImg}
             imgClass="reply-img"
           />
         </Link>

@@ -13,7 +13,9 @@ const ImgReady = ({ userImg, imgClass }) => {
   useEffect(() => {
     const getData = async () => {
       const token = localStorage.getItem("token");
-
+      if (!userImg || userImg === "undefined") {
+        userImg = globalVars.DEFAULT_PHOTO;
+      }
       try {
         const response = await fetch(`${globalVars.PORT}/imgs/${userImg}`, {
           method: "GET",

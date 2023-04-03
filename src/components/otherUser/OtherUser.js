@@ -53,10 +53,8 @@ const OtherUser = () => {
           <div className="profile-divs">
             <div className="profile-left">
               <div className="photo">
-                <ImgReady
-                  userImg={uImg ? uImg : `${process.env.DEFAULT_PHOTO}`}
-                  imgClass="image"
-                />
+                {console.log(uImg)}
+                <ImgReady userImg={uImg} imgClass="image" />
               </div>
             </div>
 
