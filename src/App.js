@@ -11,16 +11,18 @@ import Profile from "./pages/profile";
 import OtherUser from "./components/otherUser/OtherUser";
 import EmailConfirmation from "./pages/EmailConfirmation";
 import Admin from "./pages/Admin";
+import PageNotFound from "./pages/PageNotFound";
 
 //import components
 import ProtectedRoute from "./util/ProtectedRoute";
+import AdminRoute from "./util/AdminRoute";
 
 function App() {
   return (
     <main>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route exact path="/" element={<Home />} />
           <Route
             path="/allPosts"
             element={
@@ -29,7 +31,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/auth" element={<Auth />} />
+          <Route exact path="/auth" element={<Auth />} />
           <Route path="/confirmed" element={<EmailConfirmation />} />
           <Route
             exact
@@ -51,11 +53,12 @@ function App() {
           <Route
             path="/admin"
             element={
-              <ProtectedRoute>
+              <AdminRoute>
                 <Admin />
-              </ProtectedRoute>
+              </AdminRoute>
             }
           />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Router>
       {/* <Footer /> */}

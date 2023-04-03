@@ -5,6 +5,7 @@ import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
+import AdminPopUp from "../adminOptions/AdminPopUp";
 
 const Nav = styled.nav``;
 const NavLink = styled(Link)``;
@@ -35,6 +36,7 @@ const Navbar = () => {
             <FaRegHandshake color="#BBEDFD" size={40} /> */}
           </div>
         </NavLink>
+        <AdminPopUp />
         <Nav>
           {token ? (
             <NavMenu>
@@ -48,9 +50,13 @@ const Navbar = () => {
             </NavMenu>
           ) : (
             <NavMenu>
+              {/* <a href="/">Home</a>
+              <a href="#about">About</a>
+              <a href="#how-to">How To</a>
+              <a href="/auth">Login/Register</a> */}
               <NavLink to="/">Home</NavLink>
-              <NavLink to="#about">About</NavLink>
-              <NavLink to="#how-to">How To</NavLink>
+              <NavLink to="/#about">About</NavLink>
+              <NavLink to="/#how-to">How To</NavLink>
               <NavLink to="/auth">Login/Register</NavLink>
             </NavMenu>
           )}

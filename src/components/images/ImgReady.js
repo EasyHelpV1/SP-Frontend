@@ -2,6 +2,7 @@
 import { React, useEffect, useState } from "react";
 import { imagefrombuffer } from "imagefrombuffer";
 import globalVars from "../../globalVars";
+import loadingImg from "../../assets/loadingImg.gif";
 
 const ImgReady = ({ userImg, imgClass }) => {
   const [userImage, setUserImage] = useState();
@@ -57,7 +58,12 @@ const ImgReady = ({ userImg, imgClass }) => {
       </div>
     );
   } else {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <img className={imgClass} alt="user" src={loadingImg}></img>
+      </div>
+    );
+    // return <div>Loading...</div>;
   }
 };
 

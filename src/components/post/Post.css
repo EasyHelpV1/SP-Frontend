@@ -32,7 +32,7 @@ input#title {
   font-size: 2rem;
   font-weight: 200;
   line-height: 1.4;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
   padding: 0 5px;
   background: var(--peach);
   width: 50%;
@@ -46,9 +46,11 @@ input#title {
   min-height: auto;
   /* min-height: 20vh; */
   border-radius: 1rem 0rem 0rem 0rem;
+  margin-bottom: 0;
 }
 .post-properties {
   width: 50%;
+  background: #87affd73;
 }
 .urgent-dot {
   position: absolute;
