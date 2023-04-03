@@ -48,7 +48,7 @@ a.btn-orange {
   background: var(--brown);
   color: var(--peach);
 }
-.AdminPopUp {
+/* .AdminPopUp {
   background: white;
   padding: 1rem 2rem;
   text-align: center;
@@ -60,11 +60,37 @@ a.btn-orange {
   border-radius: 0.5rem;
   border: 2px solid royalblue;
   box-shadow: 0px 0px 7px aliceblue;
+} */
+.AdminPopUp {
+  position: absolute;
+  right: 10px;
+  z-index: 9999999;
+  top: 100px;
+  background: var(--bg-grad);
+  padding: 1rem 2rem;
+  text-align: center;
+  width: auto;
+  height: auto;
+  /* margin-top: -6rem; */
+  /* margin-right: -33%; */
+  /* padding-top: 7rem; */
+  border-radius: 0rem 0rem 1rem 1rem;
+  border: 2px solid #6484e5;
+  border-top: none;
+  box-shadow: 0px 10px 12px #c5f1ff;
+  /* width: 12rem; */
 }
-.AdminPopUp a {
+/* .AdminPopUp a {
   color: black;
   margin: 0 auto;
+} */
+.AdminPopUp a {
+  color: #c5f1ff;
+  margin: 0 auto;
+  font-size: 2rem;
+  font-weight: 600;
+  text-decoration: none;
 }
 .AdminPopUp a:hover {
-  color: blueviolet;
+  color: var(--sky);
 }

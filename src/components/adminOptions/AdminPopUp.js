@@ -1,15 +1,35 @@
 /* jshint esversion: 8 */
-import { React } from "react";
+import { React, useState, useEffect } from "react";
 import { NavLink as Link } from "react-router-dom";
-import AdminRoute from "../../util/AdminRoute";
+import jwtDecode from "jwt-decode";
 
 const AdminPopUp = () => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    const adminAuth = () => {
+      const userToken = localStorage.getItem("token");
+      if (!userToken || userToken === "undefined") {
+        setIsAdmin(false);
+        return;
+      }
+      const payload = jwtDecode(userToken);
+      if (payload.role !== "admin") {
+        setIsAdmin(false);
+        return;
+      }
+      setIsAdmin(true);
+    };
+    adminAuth();
+  }, [isAdmin]);
+
   return (
-    <AdminRoute>
-      <div className="AdminPopUp">
-        <Link to="/admin">Admin Actions</Link>
-      </div>
-    </AdminRoute>
+    <div>
+      {isAdmin ? (
+        <div className="AdminPopUp">
+          <Link to="/admin">Admin Actions</Link>
+        </div>
+      ) : null}
+    </div>
   );
 };
 
