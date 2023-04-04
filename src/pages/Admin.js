@@ -4,10 +4,10 @@ import { React, useState } from "react";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
 import ResetUserPass from "../components/adminOptions/ResetUserPass";
-import DeleteUser from "../components/adminOptions/DeleteUser";
 import DeletePost from "../components/adminOptions/DeletePost";
-// import EditUser from "../components/adminOptions/EditUser";
 import FindUser from "../components/adminOptions/FindUser";
+import AddAdmin from "../components/adminOptions/AddAdmin";
+import RemoveAdmin from "../components/adminOptions/RemoveAdmin";
 //css
 import "./Admin.css";
 
@@ -32,6 +32,22 @@ const Admin = () => {
               }}
             >
               Reset User Password
+            </li>
+            <li
+              className="ad-options"
+              onClick={() => {
+                toggleForm(<AddAdmin />);
+              }}
+            >
+              Promote User to Admin
+            </li>
+            <li
+              className="ad-options"
+              onClick={() => {
+                toggleForm(<RemoveAdmin />);
+              }}
+            >
+              Remove Admin Privileges
             </li>
             <li
               className="ad-options"

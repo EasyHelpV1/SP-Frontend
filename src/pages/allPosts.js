@@ -75,11 +75,7 @@ const AllPosts = () => {
                     comments={post.comments}
                     createdById={post.createdBy}
                     createdBy={`${post.userData[0].firstN} ${post.userData[0].lastN}`}
-                    userPhoto={
-                      post.userData[0].userImg
-                        ? `${post.userData[0].userImg}`
-                        : `641d1dcd34c9ed492688ecfa`
-                    }
+                    userPhoto={post.userData[0].userImg}
                     CreatedAt={moment(post.createdAt).utc().format("lll")}
                     // .format("MMMM Do YYYY, h:mm:ss a")
                   />
