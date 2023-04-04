@@ -3,7 +3,7 @@ body {
 }
 section#auth {
   background: var(--bg-grad);
-  height: 100vh;
+  min-height: 150vh;
 }
 .form-btns {
   display: flex;
@@ -86,4 +86,7 @@ form button {
   /* margin: 0 auto; */
   margin-top: 10px;
   padding: 5px;
+}
+.auth #passError {
+  margin: 0 auto;
 }

@@ -3,6 +3,7 @@ import { React, useEffect, useState } from "react";
 import { imagefrombuffer } from "imagefrombuffer";
 import globalVars from "../../globalVars";
 import loadingImg from "../../assets/loadingImg.gif";
+import errorImg from "../../assets/errorImg.png";
 
 const ImgReady = ({ userImg, imgClass }) => {
   const [userImage, setUserImage] = useState();
@@ -47,16 +48,22 @@ const ImgReady = ({ userImg, imgClass }) => {
   if (!loading) {
     return (
       <div className="image">
-        {error && <div className="error-msg">{error}</div>}
-        <img
-          className={imgClass}
-          alt="user"
-          src={`${readImg(userImage.img.data)}`}
-          // src={imagefrombuffer({
-          //   type: userImage.img.type,
-          //   data: userImage.img.data,
-          // })}
-        ></img>
+        {/* {error && <div className="error-msg">{error}</div>} */}
+        {error ? (
+          <div>
+            <img className={imgClass} alt="user" src={errorImg}></img>
+          </div>
+        ) : (
+          <img
+            className={imgClass}
+            alt="user"
+            src={`${readImg(userImage.img.data)}`}
+            // src={imagefrombuffer({
+            //   type: userImage.img.type,
+            //   data: userImage.img.data,
+            // })}
+          ></img>
+        )}
       </div>
     );
   } else {
