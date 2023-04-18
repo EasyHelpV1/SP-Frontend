@@ -12,6 +12,7 @@ const Login = (props) => {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
 
   //login works
   const userLoggedIn = (data) => {
@@ -37,10 +38,12 @@ const Login = (props) => {
       if (!response.ok) {
         throw new Error(`${result.msg}`);
       }
-
+      setSuccess("Login successful, redirecting...");
       userLoggedIn(result);
-      setError(null);
-      navigate("/allPosts");
+      setTimeout(() => {
+        setError(null);
+        navigate("/allPosts");
+      }, 5000);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -80,6 +83,7 @@ const Login = (props) => {
             </button>
           </div>
           {!loading && error && <div className="error-msg">{error}</div>}
+          {success && <div className="success-msg">{success}</div>}
         </div>
       </form>
     </div>

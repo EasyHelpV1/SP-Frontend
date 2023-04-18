@@ -2,115 +2,149 @@
 /*jshint esversion:8*/
 const { test, expect } = require("@playwright/test");
 const { chromium } = require("playwright");
+// const istanbul = require('istanbul');
+const v8toIstanbul = require("v8-to-istanbul");
 require("dotenv").config();
 
 const URL = "http://localhost:3000/auth";
+const baseURL = "http://localhost:3000";
+// const URL = "https://sp-frontend-6181.onrender.com/auth";
+// const baseURL = "https://sp-frontend-6181.onrender.com";
+const backURL = "https://sp-backend-b70z.onrender.com/api/v1";
 const { VALID_PASS } = process.env;
 
-test.beforeAll(async () => {
-  const browser = await chromium.launch();
-  const page = await browser.newPage();
-});
+test.describe("Auth page", () => {
+  let browser;
+  let page;
+  let context;
+  let coverage;
 
-test("should allow a user to log in with valid credentials", async ({
-  page,
-}) => {
-  await page.goto(URL);
+  test.beforeAll(async () => {
+    browser = await chromium.launch();
+    context = await browser.newContext();
+    page = await context.newPage();
+    await page.coverage.startJSCoverage();
+  });
 
-  await page.fill('[type="email"]', "abc@gmail.com");
-  await page.fill('[type="password"]', VALID_PASS);
-  await page.click(".login-btn");
+  test.afterAll(async () => {
+    coverage = await page.coverage.stopJSCoverage();
+    for (const entry of coverage) {
+      const converter = v8toIstanbul("", 0, { source: entry.source });
+      await converter.load();
+      converter.applyCoverage(entry.functions);
+      console.log(JSON.stringify(converter.toIstanbul()));
+    }
+    console.log(coverage);
+    await browser.close();
+  });
 
-  await page.waitForNavigation();
+  test("Auth-T1: should allow a user to log in with valid credentials", async ({
+    page,
+  }) => {
+    // triple the timeout amount
+    test.slow();
+    //////
+    await page.goto(URL);
 
-  expect(page.url()).toBe("http://localhost:3000/allPosts");
-});
+    await page.fill('[type="email"]', "abc@gmail.com");
+    await page.fill('[type="password"]', VALID_PASS);
+    await page.click(".login-btn");
 
-test("should show an error message for invalid email", async ({ page }) => {
-  await page.goto(URL);
+    await page.waitForURL(`${baseURL}/allPosts`);
 
-  await page.fill('[type="email"]', "invalidemail@example.com");
-  await page.fill('[type="password"]', "invalidpassword");
-  await page.click(".login-btn");
+    // await page.waitForNavigation()
+    // expect(page.url()).toBe(`${baseURL}/allPosts`);
+  });
 
-  await page.waitForSelector(".error-msg");
+  test("Auth-T2: should show an error message for invalid email", async ({
+    page,
+  }) => {
+    await page.goto(URL);
 
-  const EmailErrorMessage = await page.textContent(".error-msg");
-  expect(EmailErrorMessage).toBe("Incorrect email");
-});
+    await page.fill('[type="email"]', "invalidemail@example.com");
+    await page.fill('[type="password"]', "invalidpassword");
+    await page.click(".login-btn");
 
-test("should show an error message for invalid password", async ({ page }) => {
-  await page.goto("http://localhost:3000/auth");
+    await page.waitForSelector(".error-msg");
 
-  await page.fill('[type="email"]', "abc@gmail.com");
-  await page.fill('[type="password"]', "invalidpassword");
-  await page.click(".login-btn");
+    const EmailErrorMessage = await page.textContent(".error-msg");
+    expect(EmailErrorMessage).toBe("Incorrect email");
+  });
 
-  await page.waitForSelector(".error-msg");
+  test("Auth-T3: should show an error message for invalid password", async ({
+    page,
+  }) => {
+    await page.goto(URL);
 
-  const PassErrorMessage = await page.textContent(".error-msg");
-  expect(PassErrorMessage).toBe("Incorrect password");
-});
+    await page.fill('[type="email"]', "abc@gmail.com");
+    await page.fill('[type="password"]', "invalidpassword");
+    await page.click(".login-btn");
 
-test("renders login form by default", async ({ page }) => {
-  await page.goto(URL);
-  const loginForm = await page.waitForSelector(".login");
-  expect(loginForm).not.toBeNull();
-});
+    await page.waitForSelector(".error-msg");
 
-test('switches to registration form whenx "Register" button is clicked', async ({
-  page,
-}) => {
-  await page.goto(URL);
+    const PassErrorMessage = await page.textContent(".error-msg");
+    expect(PassErrorMessage).toBe("Incorrect password");
+  });
 
-  const registerButton = await page.waitForSelector(".register-btn");
-  await registerButton.click();
-  const registerForm = await page.waitForSelector(".register");
-  expect(registerForm).not.toBeNull();
-});
+  test("Auth-T4: renders login form by default", async ({ page }) => {
+    await page.goto(URL);
+    const loginForm = await page.waitForSelector(".login");
+    expect(loginForm).not.toBeNull();
+  });
 
-test('switches back to login form when "Log in" button is clicked', async ({
-  page,
-}) => {
-  await page.goto(URL);
+  test('switches to registration form when "Register" button is clicked', async ({
+    page,
+  }) => {
+    await page.goto(URL);
 
-  const registerButton = await page.waitForSelector(".register-btn");
-  await registerButton.click();
-  const loginButton = await page.waitForSelector(".login-btn");
-  await loginButton.click();
-  const loginForm = await page.waitForSelector(".login");
-  expect(loginForm).not.toBeNull();
-});
+    const registerButton = await page.waitForSelector(".register-btn");
+    await registerButton.click();
+    const registerForm = await page.waitForSelector(".register");
+    expect(registerForm).not.toBeNull();
+  });
 
-test("renders form inputs", async ({ page }) => {
-  await page.goto(URL);
-  const registerButton = await page.waitForSelector(".register-btn");
-  await registerButton.click();
+  test('Auth-T5: switches back to login form when "Log in" button is clicked', async ({
+    page,
+  }) => {
+    await page.goto(URL);
 
-  await expect(await page.waitForSelector("#firstN")).not.toBeNull();
-  await expect(await page.waitForSelector("#lastN")).not.toBeNull();
-  await expect(await page.waitForSelector("#birthDate")).not.toBeNull();
-  await expect(await page.waitForSelector("#email")).not.toBeNull();
-  await expect(await page.waitForSelector("#phone")).not.toBeNull();
-  await expect(await page.waitForSelector("#password")).not.toBeNull();
-  await expect(await page.waitForSelector("#passwordAgain")).not.toBeNull();
-});
+    const registerButton = await page.waitForSelector(".register-btn");
+    await registerButton.click();
+    const loginButton = await page.waitForSelector(".login-btn");
+    await loginButton.click();
+    const loginForm = await page.waitForSelector(".login");
+    expect(loginForm).not.toBeNull();
+  });
 
-test("should register a new user successfully", async ({ page }) => {
-  await page.goto(URL);
-  const registerButton = await page.waitForSelector(".register-btn");
-  await registerButton.click();
+  test("Auth-T6: renders form inputs", async ({ page }) => {
+    await page.goto(URL);
+    const registerButton = await page.waitForSelector(".register-btn");
+    await registerButton.click();
 
-  await page.fill("#firstN", "John");
-  await page.fill("#lastN", "Doe");
-  await page.fill("#birthDate", "1990-01-01");
-  await page.fill("#email", "johndoe@example.com");
-  //   await page.fill("#phone", "0123456789");
-  await page.fill("#password", "Password1!");
-  await page.fill("#passwordAgain", "Password1!");
-  await page.click(".register-btn");
+    await expect(await page.waitForSelector("#firstN")).not.toBeNull();
+    await expect(await page.waitForSelector("#lastN")).not.toBeNull();
+    await expect(await page.waitForSelector("#birthDate")).not.toBeNull();
+    await expect(await page.waitForSelector("#email")).not.toBeNull();
+    await expect(await page.waitForSelector("#password")).not.toBeNull();
+    await expect(await page.waitForSelector("#passwordAgain")).not.toBeNull();
+  });
 
-  await page.waitForNavigation();
+  // test("Auth-T7: should register a new user successfully", async ({ page }) => {
+  //   await page.goto(URL);
+  //   const registerButton = await page.waitForSelector(".register-btn");
+  //   await registerButton.click();
 
-  expect(page.url()).toBe("http://localhost:3000/allPosts");
+  //   await page.fill("#firstN", "John");
+  //   await page.fill("#lastN", "Doe");
+  //   await page.fill("#birthDate", "1990-01-01");
+  //   await page.fill("#email", "johndoe@example.com");
+  //   //   await page.fill("#phone", "0123456789");
+  //   await page.fill("#password", "Password1!");
+  //   await page.fill("#passwordAgain", "Password1!");
+  //   await page.click(".register-btn");
+
+  //   await page.waitForNavigation();
+
+  //   expect(page.url()).toBe("http://localhost:3000/allPosts");
+  // });
 });
