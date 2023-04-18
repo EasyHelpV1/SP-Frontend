@@ -58,17 +58,22 @@ const Home = () => {
         <div className="info-social">
           <h1>Contact Us!</h1>
           <div className="links">
-            <a href="Gmail.com">
+            <a href="mailto:email@easyhelp.com" id="gmail-link">
               <SiGmail color="#101330" size={40} />
             </a>
-            <a href="facebook.com">
+            <a
+              href="https://www.facebook.com/profile.php?id=100092154781925"
+              target="_blank"
+              id="facebook-link"
+            >
               <FaFacebookSquare color="#101330" size={40} />
             </a>
-            <a href="instagram.com">
+            <a
+              href="https://www.instagram.com/easyhelpv1"
+              target="_blank"
+              id="instagram-link"
+            >
               <FaInstagramSquare color="#101330" size={40} />
-            </a>
-            <a href="twitter.com">
-              <FaTwitterSquare color="#101330" size={40} />
             </a>
           </div>
         </div>
