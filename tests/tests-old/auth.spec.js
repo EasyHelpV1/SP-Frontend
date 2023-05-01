@@ -1,16 +1,20 @@
 // @ts-check
 /*jshint esversion:8*/
-const { test, expect } = require("@playwright/test");
+// const { test, expect } = require("@playwright/test");
+import { test, expect } from "@playwright/experimental-ct-react";
 const { chromium } = require("playwright");
-// const istanbul = require('istanbul');
-const v8toIstanbul = require("v8-to-istanbul");
+
 require("dotenv").config();
 
-const URL = "http://localhost:3000/auth";
-const baseURL = "http://localhost:3000";
+import Login from "../../src/components/login/Login";
+// const authPage = require("../src/pages/auth");
+const login = require("../../src/components/login/Login");
+
+// const URL = "http://localhost:3000/auth";
+// const baseURL = "http://localhost:3000";
 // const URL = "https://sp-frontend-6181.onrender.com/auth";
 // const baseURL = "https://sp-frontend-6181.onrender.com";
-const backURL = "https://sp-backend-b70z.onrender.com/api/v1";
+// const backURL = "https://sp-backend-b70z.onrender.com/api/v1";
 const { VALID_PASS } = process.env;
 
 test.describe("Auth page", () => {
@@ -19,48 +23,36 @@ test.describe("Auth page", () => {
   let context;
   let coverage;
 
-  test.beforeAll(async () => {
+  test.beforeAll(async ({ baseURL }) => {
     browser = await chromium.launch();
     context = await browser.newContext();
     page = await context.newPage();
-    await page.coverage.startJSCoverage();
+    await page.goto(`${baseURL}/auth`);
+  });
+
+  test.beforeEach(async ({ baseURL }) => {
+    await page.goto(`${baseURL}/auth`);
   });
 
   test.afterAll(async () => {
-    coverage = await page.coverage.stopJSCoverage();
-    for (const entry of coverage) {
-      const converter = v8toIstanbul("", 0, { source: entry.source });
-      await converter.load();
-      converter.applyCoverage(entry.functions);
-      console.log(JSON.stringify(converter.toIstanbul()));
-    }
-    console.log(coverage);
     await browser.close();
   });
 
   test("Auth-T1: should allow a user to log in with valid credentials", async ({
-    page,
+    baseURL,
   }) => {
     // triple the timeout amount
     test.slow();
     //////
-    await page.goto(URL);
 
     await page.fill('[type="email"]', "abc@gmail.com");
     await page.fill('[type="password"]', VALID_PASS);
     await page.click(".login-btn");
 
     await page.waitForURL(`${baseURL}/allPosts`);
-
-    // await page.waitForNavigation()
-    // expect(page.url()).toBe(`${baseURL}/allPosts`);
   });
 
-  test("Auth-T2: should show an error message for invalid email", async ({
-    page,
-  }) => {
-    await page.goto(URL);
-
+  test("Auth-T2: should show an error message for invalid email", async () => {
     await page.fill('[type="email"]', "invalidemail@example.com");
     await page.fill('[type="password"]', "invalidpassword");
     await page.click(".login-btn");
@@ -71,11 +63,7 @@ test.describe("Auth page", () => {
     expect(EmailErrorMessage).toBe("Incorrect email");
   });
 
-  test("Auth-T3: should show an error message for invalid password", async ({
-    page,
-  }) => {
-    await page.goto(URL);
-
+  test("Auth-T3: should show an error message for invalid password", async () => {
     await page.fill('[type="email"]', "abc@gmail.com");
     await page.fill('[type="password"]', "invalidpassword");
     await page.click(".login-btn");
@@ -86,28 +74,19 @@ test.describe("Auth page", () => {
     expect(PassErrorMessage).toBe("Incorrect password");
   });
 
-  test("Auth-T4: renders login form by default", async ({ page }) => {
-    await page.goto(URL);
+  test("Auth-T4: renders login form by default", async () => {
     const loginForm = await page.waitForSelector(".login");
     expect(loginForm).not.toBeNull();
   });
 
-  test('switches to registration form when "Register" button is clicked', async ({
-    page,
-  }) => {
-    await page.goto(URL);
-
+  test('Auth-T5: switches to registration form when "Register" button is clicked', async () => {
     const registerButton = await page.waitForSelector(".register-btn");
     await registerButton.click();
     const registerForm = await page.waitForSelector(".register");
     expect(registerForm).not.toBeNull();
   });
 
-  test('Auth-T5: switches back to login form when "Log in" button is clicked', async ({
-    page,
-  }) => {
-    await page.goto(URL);
-
+  test('Auth-T6: switches back to login form when "Log in" button is clicked', async () => {
     const registerButton = await page.waitForSelector(".register-btn");
     await registerButton.click();
     const loginButton = await page.waitForSelector(".login-btn");
@@ -116,8 +95,7 @@ test.describe("Auth page", () => {
     expect(loginForm).not.toBeNull();
   });
 
-  test("Auth-T6: renders form inputs", async ({ page }) => {
-    await page.goto(URL);
+  test("Auth-T7: renders form inputs", async () => {
     const registerButton = await page.waitForSelector(".register-btn");
     await registerButton.click();
 
@@ -129,8 +107,7 @@ test.describe("Auth page", () => {
     await expect(await page.waitForSelector("#passwordAgain")).not.toBeNull();
   });
 
-  // test("Auth-T7: should register a new user successfully", async ({ page }) => {
-  //   await page.goto(URL);
+  // test("Auth-T8: should register a new user successfully", async () => {
   //   const registerButton = await page.waitForSelector(".register-btn");
   //   await registerButton.click();
 
@@ -147,4 +124,49 @@ test.describe("Auth page", () => {
 
   //   expect(page.url()).toBe("http://localhost:3000/allPosts");
   // });
+  test("Auth-T9: updates email and password state when input fields change", async () => {
+    // Simulate user typing in email input field
+    await page.type('input[type="email"]', "test@example.com");
+
+    // Verify that email state has been updated
+    const emailValue = await page.$eval(
+      'input[type="email"]',
+      (el) => el.value
+    );
+    expect(emailValue).toBe("test@example.com");
+
+    // Simulate user typing in password input field
+    await page.type('input[type="password"]', "password123");
+
+    // Verify that password state has been updated
+    const passwordValue = await page.$eval(
+      'input[type="password"]',
+      (el) => el.value
+    );
+    expect(passwordValue).toBe("password123");
+  });
+
+  test("Auth-T10: stores user and token in localStorage after successful login", async ({
+    baseURL,
+  }) => {
+    page.goto(`${baseURL}/auth`);
+    await page.fill('input[type="email"]', "abc@gmail.com");
+    await page.fill('input[type="password"]', VALID_PASS);
+    await page.click(".login-btn");
+
+    const tokenStorage = await page.evaluate(() => window.localStorage.token);
+    expect(tokenStorage).not.toBeNull();
+  });
+  test("Auth-T11: Mount Login", async ({ baseURL, mount }) => {
+    // Simulate valid login credentials
+    const component = await mount(<Login onFormSwitch="login" />);
+    await expect(component).not.toBeNull();
+  });
+  test("Auth-T12: test", async () => {
+    await page.getByPlaceholder("youremail@example.com").click();
+    await page.getByPlaceholder("youremail@example.com").fill("abc@gmail.com");
+    await page.getByPlaceholder("password").click();
+    await page.getByPlaceholder("password").fill("Password1!");
+    await page.getByRole("button", { name: "Log in" }).click();
+  });
 });

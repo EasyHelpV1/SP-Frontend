@@ -4,8 +4,10 @@ const { test, expect } = require("@playwright/test");
 const { chromium } = require("playwright");
 require("dotenv").config();
 
-// const URL = "http://localhost:3000";
-const URL = "https://sp-frontend-6181.onrender.com";
+// const homePgae = require("../src/pages/home");
+
+const URL = "http://localhost:3000";
+// const URL = "https://sp-frontend-6181.onrender.com";
 
 test.describe("Home page", () => {
   let browser;
