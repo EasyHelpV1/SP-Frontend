@@ -10,6 +10,8 @@ import Footer from "../components/footer/Footer";
 import globalVars from "../globalVars";
 //css
 import "./allPosts.css";
+import "../components/post/Post.css";
+import "../components/post/Reply.css";
 
 const AllPosts = () => {
   const [posts, setPosts] = useState([]);

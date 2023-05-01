@@ -2,7 +2,6 @@
 import React from "react";
 import "./Footer.css";
 import logo from "../../assets/logo.png";
-import { FaRegHandshake } from "react-icons/fa";
 
 const Footer = () => {
   return (

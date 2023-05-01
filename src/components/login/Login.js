@@ -60,6 +60,7 @@ const Login = (props) => {
       <form onSubmit={handleLogin}>
         <div className="form-control">
           <input
+            id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             type="email"
@@ -67,6 +68,7 @@ const Login = (props) => {
             required
           />
           <input
+            id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type="password"

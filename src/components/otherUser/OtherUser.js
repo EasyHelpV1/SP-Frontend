@@ -1,5 +1,5 @@
 /*jshint esversion: 8*/
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import Navbar from "../navbar/Navbar";
@@ -53,7 +53,6 @@ const OtherUser = () => {
           <div className="profile-divs">
             <div className="profile-left">
               <div className="photo">
-                {console.log(uImg)}
                 <ImgReady userImg={uImg} imgClass="image" />
               </div>
             </div>

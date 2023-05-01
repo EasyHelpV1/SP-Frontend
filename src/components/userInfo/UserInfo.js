@@ -1,5 +1,5 @@
 /*jshint esversion:8*/
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { MdEdit } from "react-icons/md";
 import moment from "moment";
 import globalVars from "../../globalVars";

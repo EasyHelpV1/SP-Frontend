@@ -4,6 +4,25 @@
  */
 
 module.exports = {
+  // preset: "jest-playwright-preset",
+  // testEnvironmentOptions: {
+  //   "jest-playwright": {
+  //     browsers: ["chromium"],
+  //   },
+  // },
+  testMatch: ["**/__tests__/**/*.js", "**/?(*.)+(test).js"],
+  moduleNameMapper: {
+    "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+      "<rootDir>/mocks/fileMock.js",
+    "\\.(css|less)$": "<rootDir>/mocks/fileMock.js",
+  },
+  transform: {
+    "^.+\\.jsx?$": "babel-jest",
+  },
+  transformIgnorePatterns: [
+    "/home/alabgh01/Desktop/client-sp/node_modules/(?!(react-password-checklist)/)",
+  ],
+
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -144,7 +163,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "jest-environment-node",
+  testEnvironment: "jsdom",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},

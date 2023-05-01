@@ -46,7 +46,7 @@ module.exports = defineConfig({
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: { ...devices["Desktop Chrome"], baseURL: "http://localhost:3000" },
     },
 
     // {
@@ -86,10 +86,8 @@ module.exports = defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     command: "npm run start",
-    port: 3000,
+    // port: 3000,
+    url: "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
-  },
-  use: {
-    baseURL: "http://localhost:3000",
   },
 });

@@ -1,6 +1,5 @@
 /* jshint esversion: 8 */
 import React, { useEffect, useState } from "react";
-import { FaRegHandshake } from "react-icons/fa";
 import { NavLink as Link } from "react-router-dom";
 import styled from "styled-components";
 import "./Navbar.css";

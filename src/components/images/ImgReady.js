@@ -1,6 +1,5 @@
 /* jshint esversion: 8 */
-import { React, useEffect, useState } from "react";
-import { imagefrombuffer } from "imagefrombuffer";
+import React, { useEffect, useState } from "react";
 import globalVars from "../../globalVars";
 import loadingImg from "../../assets/loadingImg.gif";
 import errorImg from "../../assets/errorImg.png";
@@ -58,10 +57,6 @@ const ImgReady = ({ userImg, imgClass }) => {
             className={imgClass}
             alt="user"
             src={`${readImg(userImage.img.data)}`}
-            // src={imagefrombuffer({
-            //   type: userImage.img.type,
-            //   data: userImage.img.data,
-            // })}
           ></img>
         )}
       </div>

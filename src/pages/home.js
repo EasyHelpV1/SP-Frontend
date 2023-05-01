@@ -4,11 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { SiGmail } from "react-icons/si";
 import { FiArrowDown } from "react-icons/fi";
 import { FiArrowUp } from "react-icons/fi";
-import {
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaTwitterSquare,
-} from "react-icons/fa";
+import { FaFacebookSquare, FaInstagramSquare } from "react-icons/fa";
 
 // components
 import ppl from "../assets/ppl.png";

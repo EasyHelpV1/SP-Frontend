@@ -1,10 +1,10 @@
 /*jshint esversion: 8*/
-import { React, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import ImgReady from "../images/ImgReady";
 import globalVars from "../../globalVars";
-import "./Reply.css";
+// import "./Reply.css";
 
 const Reply = ({ reply }) => {
   const [actualReply, setActualReply] = useState([]);

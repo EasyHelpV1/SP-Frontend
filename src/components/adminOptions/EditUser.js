@@ -1,5 +1,5 @@
 /* jshint esversion: 8 */
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { MdEdit } from "react-icons/md";
 import moment from "moment";
 import globalVars from "../../globalVars";
@@ -115,7 +115,7 @@ const EditUser = ({ userInfo }) => {
             <MdEdit color="#BBEDFD" size={20} />
           </p>
         </div>
-        {userInfo.phone ? (
+        {/* {userInfo.phone ? (
           <div className="info-field">
             <p className="a-field">Phone: {userInfo.phone}</p>
             {elementStates["phoneToggle"] && (
@@ -135,7 +135,7 @@ const EditUser = ({ userInfo }) => {
               <MdEdit color="#BBEDFD" size={20} />
             </p>
           </div>
-        ) : null}
+        ) : null} */}
         <div className="info-field">
           Birth Date: {moment(userInfo.birthDate).utc().format("YYYY-MM-DD")}
         </div>
