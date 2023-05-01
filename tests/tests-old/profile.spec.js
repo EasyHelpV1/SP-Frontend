@@ -4,7 +4,11 @@ const { chromium } = require("playwright");
 const { async } = require("regenerator-runtime");
 require("dotenv").config();
 
+const userInfo = require("../../src/components/userInfo/UserInfo");
+const passReste = require("../../src/components/userInfo/PasswordChange");
 // import ImgReady from "../src/components/images/ImgReady";
+import imgA from "../../src/components/images/Img";
+import otherUser from "../../src/components/otherUser/OtherUser";
 
 const URL = "http://localhost:3000/profile";
 const baseURL = "http://localhost:3000";
