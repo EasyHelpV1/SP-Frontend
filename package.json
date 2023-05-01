@@ -42,13 +42,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "npx playwright test --config=playwright.config.js",
-    "eject": "react-scripts eject",
-    "coverage": "nyc npm test",
-    "test-ct": "playwright test -c playwright-ct.config.js",
-    "coverage-ct": "nyc npm run test-ct",
-    "test-jest": "jest --config ./jest.config.js",
-    "test-coverage": "nyc npm run test-jest"
+    "test": "jest --config ./jest.config.js",
+    "eject": "react-scripts eject"
   },
   "nyc": {
     "all": true,
@@ -112,7 +107,6 @@
     "jsdom": "^21.1.1",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
-    "playwright": "^1.32.3",
     "playwright-core": "^1.32.3",
     "react-test-renderer": "^18.2.0",
     "regenerator-runtime": "^0.13.11",
