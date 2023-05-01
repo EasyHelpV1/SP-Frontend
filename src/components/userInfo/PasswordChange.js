@@ -1,5 +1,5 @@
 /* jshint esversion: 8 */
-import { React, useState } from "react";
+import React, { useState } from "react";
 import PasswordChecklist from "react-password-checklist";
 import globalVars from "../../globalVars";
 

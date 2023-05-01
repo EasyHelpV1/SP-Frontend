@@ -1,5 +1,5 @@
 /*jshint esversion: 8*/
-import { React, useState } from "react";
+import React, { useState } from "react";
 //components
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";

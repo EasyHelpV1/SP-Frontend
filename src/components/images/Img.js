@@ -8,12 +8,11 @@ const Img = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const userId = JSON.parse(localStorage.getItem("user"))._id;
-  const token = localStorage.getItem("token");
-
   const handleImg = async (e) => {
     e.preventDefault();
 
+    const userId = JSON.parse(localStorage.getItem("user"))._id;
+    const token = localStorage.getItem("token");
     const formData = new FormData();
     formData.append("image", file);
     formData.append("userId", userId);
@@ -55,7 +54,7 @@ const Img = () => {
   return (
     <div>
       <form onSubmit={handleImg}>
-        <input type="file" onChange={handleFileChange} />
+        <input type="file" id="image-input" onChange={handleFileChange} />
         <button type="submit">Upload</button>
       </form>
       {!loading && error && <div className="error-msg">{error}</div>}

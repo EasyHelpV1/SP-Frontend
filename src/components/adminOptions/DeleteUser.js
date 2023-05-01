@@ -1,5 +1,5 @@
 /* jshint esversion: 8 */
-import { React, useState } from "react";
+import React, { useState } from "react";
 import globalVars from "../../globalVars";
 
 const DeleteUser = () => {

@@ -1,5 +1,5 @@
 /* jshint esversion: 8 */
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { MdInsertComment } from "react-icons/md";
 import { MdAddComment } from "react-icons/md";
 import { GoPrimitiveDot } from "react-icons/go";
@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import ImgReady from "../images/ImgReady";
 import Comment from "./Comment";
 import globalVars from "../../globalVars";
-import "./Post.css";
+// import "./Post.css";
 
 const Post = ({
   postId,
@@ -27,14 +27,10 @@ const Post = ({
   // states
   const [showComments, setShowComments] = useState(false);
   const [showAddComment, setShowAddComment] = useState(false);
-
   const [addComment, setAddComment] = useState("");
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   // const [userImage, setUserImage] = useState();
-
   const handleViewComments = () => {
     setShowComments(!showComments);
   };
@@ -66,7 +62,6 @@ const Post = ({
       window.location.reload();
     }
   };
-
   return (
     <div className="post">
       <div className="post-text" id={postId}>
@@ -81,7 +76,6 @@ const Post = ({
           <h3 className="heading-left">{title}</h3>
           <p className="timing">{CreatedAt}</p>
         </div>
-
         {/* /// */}
         <div className="inside-post">
           <p className="u-text-small">
