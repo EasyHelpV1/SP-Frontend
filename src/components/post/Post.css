@@ -192,3 +192,68 @@ span.commentReply {
 .inside-post {
   display: flex;
 }
+@media only screen and (max-width: 700px) {
+  .post {
+    box-shadow: 0px 10px 10px #0000002b;
+    margin-bottom: 3rem;
+  }
+  .post-headings {
+    display: block;
+  }
+  h3.heading-left,
+  h3.heading-right {
+    background: var(--bg-grad);
+    padding: 5px;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    margin-top: 2px;
+  }
+  .post-headings p.timing {
+    font-size: 12px;
+    width: auto;
+    min-height: auto;
+  }
+  .inside-post {
+    display: block;
+  }
+  .post-text p {
+    border-radius: 0;
+    margin-top: 2px;
+    min-height: 25rem;
+    width: 100%;
+  }
+  .post-properties {
+    width: 100%;
+  }
+  p.commentPShow {
+    min-height: 3rem !important;
+  }
+  .post-img {
+    border-radius: 50%;
+    margin-bottom: 2px;
+    margin-right: 5px;
+    max-width: 4rem;
+  }
+  .comment-details {
+    width: 85%;
+  }
+  p.commentAuthor {
+    min-height: auto;
+    padding: 0.5rem 1rem;
+    width: 75%;
+  }
+  p.commentP {
+    min-height: auto;
+    margin-left: 3rem;
+    width: 86%;
+  }
+  .replies-section p.replyAuthor {
+    width: 75%;
+    padding: 0.5rem 1rem;
+  }
+  .replies-section p.replyP {
+    width: 84%;
+    margin-left: 3rem;
+  }
+}

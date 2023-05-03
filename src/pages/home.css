@@ -115,3 +115,18 @@ h2#home {
     opacity: 1;
   }
 }
+@media only screen and (max-width: 700px) {
+  .info-register {
+    margin-top: 0;
+    display: block;
+    min-height: 85vh;
+    padding: 2rem;
+  }
+  .info-register .text {
+    max-width: 100%;
+    font-size: 14px;
+  }
+  .info-howto {
+    padding: 2rem;
+  }
+}
