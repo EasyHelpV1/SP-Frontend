@@ -9,11 +9,11 @@ const HowTo = () => {
     <section id="faq">
       <div className="container faq">
         <div className="u-title" data-aos="fade-up">
-          <h2>How to Use Easy Help</h2>
+          <h2>How to Use Easy Help?</h2>
           <p className="u-text-small">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique
-            itaque veniam laudantium, quam quas dolor tempora eligendi officia
-            sequi. Iusto.
+            Here is a short guide to help with using Easy Help. If you have any
+            additional questions, you can contact us using the information
+            below.
           </p>
         </div>
         <div className="questions">

@@ -90,3 +90,8 @@ form button {
 .auth #passError {
   margin: 0 auto;
 }
+@media only screen and (max-width: 700px) {
+  .auth {
+    margin-top: 5rem;
+  }
+}

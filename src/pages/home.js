@@ -42,16 +42,16 @@ const Home = () => {
             <img src={ppl} alt="image of people helping" />
           </div>
           <div className="go-down">
-            <a href="#about">
+            <a href="#how-to">
               <FiArrowDown size={50} color="white" />
             </a>
           </div>
         </div>
-        <div className="info-howto" id="about">
+        <div className="info-howto" id="how-to">
           <HowTo />
         </div>
 
-        <div className="info-social">
+        <div className="info-social" id="about">
           <h1>Contact Us!</h1>
           <div className="links">
             <a href="mailto:email@easyhelp.com" id="gmail-link">
