@@ -106,7 +106,9 @@ a.btn-orange {
   #nav-small,
   #nav-big {
     position: absolute;
+    z-index: 99999;
     background: white;
+    box-shadow: 0px 2px 15px #646c8b;
     left: 0;
     top: 80px;
     width: 100%;
@@ -115,7 +117,7 @@ a.btn-orange {
   }
   .navbar #nav-small a {
     display: block;
-    padding: 1rem;
+    padding: 0.5rem;
     width: 100%;
     margin: 0 auto;
     text-align: center;

@@ -61,8 +61,30 @@ const Navbar = () => {
               <a href="#how-to">How To</a>
               <a href="/auth">Login/Register</a> */}
               <NavLink to="/">Home</NavLink>
-              <NavLink to="/#about">About</NavLink>
-              <NavLink to="/#how-to">How To</NavLink>
+              <NavLink
+                to="/#about"
+                onClick={() => {
+                  const anchor = document.querySelector("#about");
+                  anchor.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                  });
+                }}
+              >
+                About
+              </NavLink>
+              <NavLink
+                to="/#how-to"
+                onClick={() => {
+                  const anchor = document.querySelector("#how-to");
+                  anchor.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                  });
+                }}
+              >
+                How To
+              </NavLink>
               <NavLink to="/auth">Login/Register</NavLink>
             </NavMenu>
           )}

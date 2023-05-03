@@ -7,9 +7,9 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="footer-first">
-        <a href="#">&bull; About</a>
-        <a href="#">&bull; Contact</a>
-        <a href="#">&bull; Documentation</a>
+        <a href="#how-to">&bull; About</a>
+        <a href="#about">&bull; Contact</a>
+        <a href="#about">&bull; Documentation</a>
       </div>
       <div className="footer-second">
         <p>&bull; EasyHelp@gmail.com</p>

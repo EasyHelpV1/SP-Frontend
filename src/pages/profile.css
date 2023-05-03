@@ -119,4 +119,8 @@ body {
     min-height: auto;
     margin: 0 2rem;
   }
+  .options,
+  .user-fields {
+    max-width: 100%;
+  }
 }
