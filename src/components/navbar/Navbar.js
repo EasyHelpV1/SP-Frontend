@@ -5,6 +5,8 @@ import styled from "styled-components";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 import AdminPopUp from "../adminOptions/AdminPopUp";
+import { RiCloseLine } from "react-icons/ri";
+import { AiOutlineMenu } from "react-icons/ai";
 
 const Nav = styled.nav``;
 const NavLink = styled(Link)``;
@@ -13,6 +15,11 @@ const NavMenu = styled.div``;
 const Navbar = () => {
   const [loading, setLoading] = useState(true);
   const [token, setToken] = useState(null);
+  const [showMenu, setShowMenu] = useState(false);
+
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
 
   useEffect(() => {
     setToken(localStorage.getItem("token"));
@@ -36,7 +43,7 @@ const Navbar = () => {
           </div>
         </NavLink>
         <AdminPopUp />
-        <Nav>
+        <Nav id={showMenu ? "nav-small" : "nav-big"}>
           {token ? (
             <NavMenu>
               <NavLink to="/">Home</NavLink>
@@ -60,6 +67,13 @@ const Navbar = () => {
             </NavMenu>
           )}
         </Nav>
+        <div className="menu-icons" onClick={toggleMenu}>
+          {showMenu ? (
+            <RiCloseLine color="#fff" size={30} />
+          ) : (
+            <AiOutlineMenu color="#fff" size={27} />
+          )}
+        </div>
       </nav>
     );
   } else {

@@ -94,3 +94,79 @@ a.btn-orange {
 .AdminPopUp a:hover {
   color: var(--sky);
 }
+.menu-icons {
+  background: transparent;
+  border: none;
+  display: none;
+}
+@media only screen and (max-width: 700px) {
+  .navbar .menu-icons {
+    display: block;
+  }
+  #nav-small,
+  #nav-big {
+    position: absolute;
+    background: white;
+    left: 0;
+    top: 80px;
+    width: 100%;
+    transition: all 0.3s;
+    border-top: 1px solid #fff;
+  }
+  .navbar #nav-small a {
+    display: block;
+    padding: 1rem;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    border-top: 1px solid #fff;
+    color: var(--dark-blue);
+    background: var(--bg-grad);
+  }
+  #nav-small {
+    animation: slide-in 0.5s ease-in-out;
+  }
+  #nav-big {
+    left: -100%;
+    animation: slide-out 0.5s ease-in-out;
+  }
+
+  #nav-small a:hover {
+    color: var(--sky);
+  }
+  .logo img {
+    width: 55px;
+    margin-left: 0;
+  }
+  .AdminPopUp {
+    top: 34px;
+    right: 81px;
+    background: none;
+    border: 2px solid white;
+    border-radius: 9px;
+    box-shadow: none;
+    padding: 0.5rem 1rem;
+  }
+  .AdminPopUp a {
+    font-size: 13px;
+  }
+  nav.container.navbar {
+    margin-bottom: 1rem;
+  }
+  @keyframes slide-out {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  @keyframes slide-in {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
